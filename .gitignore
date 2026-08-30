@@ -1,0 +1,25 @@
+# Build scripts (Python)
+build_*.py
+chrome.py
+sitecore.py
+prop_data.py
+incl_data.py
+_verify.py
+_check.py
+
+# Data / scratch files
+_properties.txt
+_content.txt
+_extract.txt
+_kumaon.txt
+_tabs.txt
+_assets_list.txt
+_assets_list2.txt
+_raw_home.html
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Server
+python.exe
