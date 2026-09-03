@@ -97,3 +97,36 @@
 .info-tile h3{font-size:1rem;font-weight:600;margin-bottom:4px}
 .info-tile p{font-size:.88rem;color:var(--ink-soft)}
 
+/* Premium property: price table, meta, gallery slider */
+.prop-meta-bar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0;padding:14px 18px;border-radius:var(--radius-lg);background:var(--glass-deep);border:1px solid var(--glass-border);font-size:.84rem;color:var(--ink-soft)}
+.prop-meta-bar span{padding:6px 12px;border-radius:var(--radius-pill);background:rgba(107,70,193,.08);border:1px solid rgba(107,70,193,.12)}
+.prop-meta-bar a{color:var(--lav-700);font-weight:600}
+.rating-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 0}
+.rating-badge{background:var(--grad-gold);color:#fff;padding:8px 14px;border-radius:var(--radius-pill);font-weight:700;font-size:.86rem;box-shadow:var(--shadow-gold)}
+.rating-text{font-size:.86rem;color:var(--ink-soft)}
+.badge-gold{padding:6px 12px;border-radius:var(--radius-pill);background:rgba(212,163,115,.14);border:1px solid rgba(212,163,115,.3);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-700);font-weight:600}
+.price-table-wrap{overflow:auto;border-radius:var(--radius-lg);border:1px solid var(--glass-border);box-shadow:var(--shadow-card);background:#fff}
+.price-table{width:100%;border-collapse:collapse;min-width:760px}
+.price-table th,.price-table td{padding:12px 14px;text-align:left;font-size:.86rem;border-bottom:1px solid var(--lav-100)}
+.price-table th{background:var(--lav-700);color:#fff;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.78rem}
+.price-table th.season-head{background:var(--gold-600)}
+.price-table td{color:var(--ink-soft);font-weight:500}
+.price-table td.room-name{font-weight:700;color:var(--ink);background:rgba(107,70,193,.04);position:sticky;left:0}
+.price-table tbody tr:hover{background:rgba(212,163,115,.06)}
+.gallery-slider{border-radius:var(--radius-lg);overflow:hidden;background:var(--glass-deep);border:1px solid var(--glass-border);box-shadow:var(--shadow-card)}
+.gallery-main{aspect-ratio:16/9;overflow:hidden;background:#000}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.gallery-main:hover img{transform:scale(1.03)}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px)}
+.gallery-thumbs img{aspect-ratio:4/3;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .3s var(--ease)}
+.gallery-thumbs img:hover{border-color:var(--gold-400);transform:translateY(-2px)}
+/* Home carousel */
+.home-carousel{position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.carousel-track{display:flex;gap:18px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:none}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-card{flex:0 0 340px;scroll-snap-align:start}
+.carousel-card .prop-card{height:100%}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow-card);border:1px solid var(--lav-100);cursor:pointer;z-index:2}
+.carousel-nav.prev{left:10px}.carousel-nav.next{right:10px}
+.carousel-nav:hover{background:var(--lav-700);color:#fff}
+
