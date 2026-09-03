@@ -1,5 +1,5 @@
 /* =====================================================
-   Leisure Hotels Group — interactions engine
+   Jeewan Yatra Group of Hotels — interactions engine
    header · parallax · 3D tilt · tabs · reveal · counters
    ===================================================== */
 (function () {
@@ -147,8 +147,8 @@
     return '../'.repeat(n);
   }
   function buildMailto(form) {
-    var to = 'bookings@leisurehotels.in';
-    var subject = form.dataset.subject || 'Website Enquiry — Leisure Hotels Group';
+    var to = 'bookings@jeewayatrahotels.com';
+    var subject = form.dataset.subject || 'Website Enquiry — Jeewan Yatra Group of Hotels';
     var body = [];
     var fd = new FormData(form);
     fd.forEach(function(v, k) { if (v) body.push(k + ': ' + v); });
