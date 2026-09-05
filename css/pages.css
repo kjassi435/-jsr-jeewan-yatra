@@ -159,12 +159,27 @@
 .cg-item{position:absolute;width:300px;height:400px;left:50%;top:50%;margin-left:-150px;margin-top:-200px;transition:opacity .3s linear;text-decoration:none}
 .cg-card{position:relative;width:100%;height:100%;border-radius:14px;overflow:hidden;box-shadow:0 25px 60px -12px rgba(20,10,45,.55);border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);backdrop-filter:blur(12px);transition:transform .35s var(--ease),box-shadow .35s}
 .cg-item:hover .cg-card{transform:scale(1.05);box-shadow:0 0 60px -15px rgba(212,163,115,.7)}
-.cg-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cg-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .3s}
+.cg-item:hover .cg-card img{filter:brightness(1.05)}
+.cg-view{position:absolute;top:12px;right:12px;padding:6px 14px;border-radius:999px;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fff;background:rgba(57,15,16,.55);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(8px);opacity:0;transform:translateY(-4px);transition:opacity .3s,transform .3s}
+.cg-item:hover .cg-view{opacity:1;transform:none}
 .cg-caption{position:absolute;bottom:0;left:0;width:100%;padding:16px;background:linear-gradient(to top,rgba(0,0,0,.85),transparent);color:#fff}
 .cg-caption h2{font-size:1.15rem;font-weight:700;line-height:1.2}
 .cg-caption em{font-size:.82rem;font-style:italic;opacity:.8}
 .cg-cta{display:inline-block;margin-top:8px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-200)}
+@media(prefers-reduced-motion:reduce){.cg-card,.cg-item{transition:none}}
 @media(max-width:640px){.circular-gallery{height:480px}.cg-item{width:230px;height:320px;margin-left:-115px;margin-top:-160px}.hero-gallery{min-height:118svh}}
+/* Bubble background (Sunset Horizon gooey blobs) */
+.bubble-bg{position:absolute;inset:0;overflow:hidden;z-index:0;filter:url(#jy-goo)}
+.jy-bubble{position:absolute;border-radius:50%;opacity:.5;transform:translate(var(--px,0),var(--py,0));animation:jy-drift 14s ease-in-out infinite alternate}
+.jy-b1{width:44vmax;height:44vmax;left:-10vmax;top:-12vmax;opacity:.35}
+.jy-b2{width:30vmax;height:30vmax;right:-8vmax;top:-6vmax;opacity:.3;animation-delay:-3s}
+.jy-b3{width:24vmax;height:24vmax;left:20%;bottom:-12vmax;opacity:.28;animation-delay:-6s}
+.jy-b4{width:16vmax;height:16vmax;right:22%;bottom:-6vmax;opacity:.3;animation-delay:-2s}
+.jy-b5{width:12vmax;height:12vmax;left:8%;top:38%;opacity:.25;animation-delay:-8s}
+.jy-b6{width:20vmax;height:20vmax;left:40%;top:-10vmax;opacity:.22;animation-delay:-5s}
+@keyframes jy-drift{from{translate:0 0;scale:1}to{translate:4vmax 3vmax;scale:1.12}}
+@media(prefers-reduced-motion:reduce){.jy-bubble{animation:none}}
 /* Themed destination cards */
 .dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .dest-card{--theme-color:150 50% 25%;width:100%;height:100%}

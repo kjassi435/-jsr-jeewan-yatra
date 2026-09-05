@@ -1,27 +1,27 @@
 /* =====================================================
-   LEISURE HOTELS GROUP — Luxury Redesign · 1/5 BASE
-   Lavender × Gold · Glassmorphism · 3D · Parallax
+   JEEWAN YATRA HOTELS — Sunset Horizon theme · shadcn/ui
+   Primary coral · Montserrat · radius 0.625rem
    ===================================================== */
 :root{
-  --lav-50:#f7f3ff;--lav-100:#efe7ff;--lav-200:#e2d2ff;--lav-300:#cdb4f5;
-  --lav-400:#b18feb;--lav-500:#9671de;--lav-600:#7a53c4;--lav-700:#5c3b9e;
-  --lav-800:#402a6d;--lav-900:#271848;
-  --gold-100:#fbf3e1;--gold-200:#f6e4c2;--gold-300:#eed39e;--gold-400:#e2bb75;
-  --gold-500:#d4a373;--gold-600:#b98a52;--gold-700:#96703c;
-  --ink:#221540;--ink-soft:#4d3d70;--muted:#8a7ba6;
-  --grad-gold:linear-gradient(115deg,#f3dd9e 0%,#d4a373 48%,#b98a52 100%);
-  --grad-lav:linear-gradient(140deg,#9671de 0%,#5c3b9e 60%,#402a6d 100%);
-  --grad-hero:linear-gradient(180deg,rgba(34,21,64,.30) 0%,rgba(39,24,72,.48) 55%,rgba(39,24,72,.94) 100%);
-  --glass:rgba(255,255,255,.58);
-  --glass-deep:rgba(255,255,255,.82);
-  --glass-dark:rgba(34,21,64,.42);
-  --glass-border:rgba(255,255,255,.65);
-  --shadow-soft:0 24px 70px -24px rgba(39,24,72,.4);
-  --shadow-card:0 12px 44px -14px rgba(39,24,72,.28);
-  --shadow-gold:0 14px 34px -12px rgba(185,138,82,.55);
-  --radius:18px;--radius-lg:30px;--radius-pill:999px;
-  --font-serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
-  --font-sans:'Poppins','Segoe UI',system-ui,sans-serif;
+  --lav-50:#FDF6F2;--lav-100:#F9EDE8;--lav-200:#F5D9CD;--lav-300:#EDC0AC;
+  --lav-400:#E89A7C;--lav-500:#F26B4A;--lav-600:#D95A3B;--lav-700:#B6482F;
+  --lav-800:#8B3A1A;--lav-900:#390F10;
+  --gold-100:#FDF6F2;--gold-200:#FDE8D0;--gold-300:#F5C99A;--gold-400:#F5A968;
+  --gold-500:#D4B896;--gold-600:#B08D57;--gold-700:#8B3A1A;
+  --ink:#390F10;--ink-soft:#6B4237;--muted:#A68A7E;
+  --grad-gold:linear-gradient(115deg,#F5A968 0%,#F26B4A 55%,#D63A3A 100%);
+  --grad-lav:linear-gradient(140deg,#F26B4A 0%,#D95A3B 55%,#8B3A1A 100%);
+  --grad-hero:linear-gradient(180deg,rgba(57,15,16,.28) 0%,rgba(139,58,26,.45) 55%,rgba(57,15,16,.92) 100%);
+  --glass:rgba(255,255,255,.62);
+  --glass-deep:rgba(255,255,255,.88);
+  --glass-dark:rgba(57,15,16,.45);
+  --glass-border:#F5D9CD;
+  --shadow-soft:0 24px 70px -24px rgba(57,15,16,.35);
+  --shadow-card:0 12px 44px -14px rgba(57,15,16,.22);
+  --shadow-gold:0 14px 34px -12px rgba(242,107,74,.5);
+  --radius:10px;--radius-lg:18px;--radius-pill:999px;
+  --font-serif:'Montserrat',Georgia,serif;
+  --font-sans:'Montserrat','Segoe UI',system-ui,sans-serif;
   --header-h:86px;--ease:cubic-bezier(.22,1,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -35,9 +35,9 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 ::selection{background:var(--lav-300);color:var(--ink)}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(60% 40% at 12% 6%,rgba(150,113,222,.16),transparent 60%),
-    radial-gradient(50% 35% at 92% 18%,rgba(212,163,115,.14),transparent 60%),
-    radial-gradient(45% 30% at 50% 100%,rgba(150,113,222,.12),transparent 60%)}
+    radial-gradient(60% 40% at 12% 6%,rgba(242,107,74,.14),transparent 60%),
+    radial-gradient(50% 35% at 92% 18%,rgba(245,169,104,.16),transparent 60%),
+    radial-gradient(45% 30% at 50% 100%,rgba(214,58,58,.08),transparent 60%)}
 .container{width:min(1200px,92%);margin-inline:auto}
 .section{padding:96px 0;position:relative}
 .section--tint{background:linear-gradient(180deg,transparent,rgba(205,180,245,.14) 18%,rgba(205,180,245,.14) 82%,transparent)}
