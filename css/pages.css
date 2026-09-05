@@ -184,4 +184,12 @@
 .dest-card a:hover .dest-explore i{transform:translateX(4px)}
 @media(max-width:900px){.dest-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.dest-grid{grid-template-columns:1fr}.dest-card a{height:360px}}
+/* Hotel cards (destination-style, with Explore + Book actions) */
+.hotel-card a.hotel-main{height:460px}
+.hotel-actions{display:flex;gap:10px;margin-top:12px}
+.hotel-actions .dest-explore{flex:1;margin-top:0}
+.hotel-actions .dest-book{flex:1;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.6);border-radius:10px;padding:12px 16px;font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--ink);transition:transform .3s,box-shadow .3s}
+.hotel-actions .dest-book:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.hotel-actions .dest-book i{font-style:normal}
+@media(max-width:600px){.hotel-card a.hotel-main{height:400px}}
 
