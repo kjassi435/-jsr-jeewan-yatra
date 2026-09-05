@@ -29,7 +29,7 @@
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
 </ul></nav>
-<a class="btn btn-gold btn-sm book-header-btn" href="https://bookings.leisurehotels.co.in/" target="_blank" rel="noopener">Book Now</a>
+<a class="btn btn-gold btn-sm book-header-btn" href="booking.html">Book Now</a>
 <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div>
 </header>
@@ -43,12 +43,69 @@
 </section>
 <section class="section">
 <div class="container">
+<div id="bookingDetails" class="reveal" style="max-width:720px;margin:0 auto 30px;display:none">
+<div style="background:var(--glass-deep);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-card)">
+<h3 style="font-family:var(--font-serif);font-size:1.6rem;margin-bottom:12px">Booking <em>Confirmed</em> — <span id="bkId"></span></h3>
+<div id="bkInfo" style="font-size:.92rem;color:var(--ink-soft);line-height:1.7"></div>
+<div style="margin-top:16px;padding:14px;background:rgba(212,163,115,.08);border-radius:10px;border:1px solid rgba(212,163,115,.2)">
+<strong>Total: <span id="bkTotal"></span></strong> <small id="bkSeason" style="margin-left:8px;color:var(--ink-soft)"></small>
+</div>
+<p class="form-note" style="margin-top:10px">A confirmation has been emailed to <span id="bkEmail"></span> and to bookings@jeewayatrahotels.com. Our team will call <span id="bkPhone"></span> within 2 hours. Your booking is also saved to the admin panel.</p>
+<div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+<a href="admin.html" class="btn btn-outline btn-sm">View in Admin</a>
+<a href="booking.html" class="btn btn-ghost btn-sm">New Booking</a>
+</div>
+</div>
+</div>
 <div class="hero-cta reveal" style="text-align:center">
 <a class="btn btn-gold" href="index.html">Back to Home</a>
 <a class="btn btn-ghost" href="hotels.html">Explore Properties</a>
+<a class="btn btn-outline" href="admin.html" style="margin-left:8px">Admin Panel</a>
 </div>
 </div>
 </section>
+<script>
+(function(){
+  const url = new URL(window.location.href);
+  const bid = url.searchParams.get("booking");
+  let data = null;
+  try { data = JSON.parse(sessionStorage.getItem("lastBooking")||"null"); }catch(e){}
+  if (bid && data && data.id===bid) {
+    document.getElementById("bookingDetails").style.display="block";
+    document.getElementById("bkId").textContent = data.id;
+    document.getElementById("bkTotal").textContent = "₹" + Number(data.totalPrice).toLocaleString("en-IN");
+    document.getElementById("bkSeason").textContent = data.season + " • " + data.seasonLabel;
+    document.getElementById("bkEmail").textContent = data.guestEmail;
+    document.getElementById("bkPhone").textContent = data.guestPhone;
+    document.getElementById("bkInfo").innerHTML = `
+      <strong>${data.propertyName}</strong><br>
+      ${data.roomName} • ${data.mealPlan}<br>
+      ${data.checkin} → ${data.checkout} (${data.nights} night${data.nights>1?"s":""}) • ${data.rooms} room${data.rooms>1?"s":""} • ${data.adults} adults • ${data.children} children<br>
+      <small>Base ₹${Number(data.basePrice).toLocaleString("en-IN")}/night • Extra Child 25% • Extra Adult 35%</small>
+    `;
+    // Update hero title
+    const h1 = document.querySelector(".page-hero h1");
+    if (h1) h1.innerHTML = "Booking <em>Confirmed</em> — " + data.id;
+    const lead = document.querySelector(".page-hero .lead");
+    if (lead) lead.textContent = "Your booking for " + data.roomName + " at " + data.propertyName + " is confirmed. Check email for details.";
+  } else if (bid) {
+    // Try localStorage
+    try {
+      const all = JSON.parse(localStorage.getItem("jy_bookings")||"[]");
+      const found = all.find(b=>b.id===bid);
+      if (found) {
+        document.getElementById("bookingDetails").style.display="block";
+        document.getElementById("bkId").textContent = found.id;
+        document.getElementById("bkTotal").textContent = "₹" + Number(found.totalPrice).toLocaleString("en-IN");
+        document.getElementById("bkSeason").textContent = found.season + " • " + found.seasonLabel;
+        document.getElementById("bkEmail").textContent = found.guestEmail;
+        document.getElementById("bkPhone").textContent = found.guestPhone;
+        document.getElementById("bkInfo").innerHTML = `<strong>${found.propertyName}</strong><br>${found.roomName} • ${found.mealPlan}<br>${found.checkin} → ${found.checkout} (${found.nights} nights)`;
+      }
+    }catch(e){}
+  }
+})();
+</script>
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand">
@@ -98,7 +155,7 @@
 </div>
 <div class="footer-bottom"><div class="container">
 <span>© <span id="year">2026</span> Jeewan Yatra Hotels. All rights reserved.</span>
-<span><a href="privacy-policy/privacy-policy.html" style="color:inherit">Privacy Policy</a> · <a href="terms-of-use/terms-of-use.html" style="color:inherit">Terms of Use</a> · <a href="reservation-policies/reservation-policies.html" style="color:inherit">Reservation Policies</a> · <a href="https://bookings.leisurehotels.co.in/property/186/bookings/manage/" target="_blank" rel="noopener" style="color:inherit">Manage Booking</a></span>
+<span><a href="privacy-policy/privacy-policy.html" style="color:inherit">Privacy Policy</a> · <a href="terms-of-use/terms-of-use.html" style="color:inherit">Terms of Use</a> · <a href="reservation-policies/reservation-policies.html" style="color:inherit">Reservation Policies</a> · <a href="booking.html" style="color:inherit">Manage Booking</a> · <a href="admin.html" style="color:inherit">Admin</a></span>
 </div></div>
 </footer>
 <script src="js/main.js"></script>

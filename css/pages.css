@@ -129,4 +129,59 @@
 .carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:var(--shadow-card);border:1px solid var(--lav-100);cursor:pointer;z-index:2}
 .carousel-nav.prev{left:10px}.carousel-nav.next{right:10px}
 .carousel-nav:hover{background:var(--lav-700);color:#fff}
+/* Booking form & dynamic pricing */
+.booking-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:start}
+.glass-form{display:grid;gap:16px}
+.glass-form label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.glass-form input,.glass-form select,.glass-form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--lav-100);background:#fff;font-family:var(--font-sans);font-size:.9rem;color:var(--ink);transition:border .2s}
+.glass-form input:focus,.glass-form select:focus,.glass-form textarea:focus{outline:none;border-color:var(--lav-400);box-shadow:0 0 0 3px rgba(107,70,193,.12)}
+.form-row{display:grid;gap:16px}
+.form-row.two{grid-template-columns:1fr 1fr}
+.price-card{background:var(--glass-deep);border:1px solid var(--glass-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;position:sticky;top:90px}
+.price-card-head{padding:22px;background:var(--grad-lav);color:#fff}
+.price-card-head h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:600;margin:0}
+.price-card-head p{color:rgba(255,255,255,.85);font-size:.86rem;margin-top:4px}
+.price-details{padding:18px;display:grid;gap:10px}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--lav-100);font-size:.88rem;color:var(--ink-soft)}
+.price-row.total{font-weight:700;color:var(--ink);border-bottom:none;background:rgba(212,163,115,.08);margin:0 -18px;padding:14px 18px;border-radius:10px}
+.price-card-foot{padding:18px;border-top:1px solid var(--lav-100);background:rgba(255,255,255,.6)}
+.room-price-line{margin:10px 0 12px;padding:10px 14px;border-radius:10px;background:rgba(107,70,193,.06);border:1px solid rgba(107,70,193,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.room-price{font-weight:700;color:var(--lav-700);font-size:1rem}
+.badge-off{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(107,70,193,.08);color:var(--lav-700);border:1px solid rgba(107,70,193,.12)}
+.badge-season{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(212,163,115,.18);color:var(--gold-700);border:1px solid rgba(212,163,115,.3)}
+@media(max-width:900px){.booking-grid{grid-template-columns:1fr}.price-card{position:static}.form-row.two{grid-template-columns:1fr}}
+/* Circular 3D gallery hero */
+.hero-gallery{position:relative;min-height:112svh;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;padding-top:calc(var(--header-h) + 18px)}
+.hero-gallery .hero-content{padding-top:0}
+.circular-gallery{position:relative;width:100%;height:620px;display:flex;align-items:center;justify-content:center;perspective:2000px;margin-top:10px;touch-action:pan-y;cursor:grab}
+.circular-gallery:active{cursor:grabbing}
+.cg-ring{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.cg-item{position:absolute;width:300px;height:400px;left:50%;top:50%;margin-left:-150px;margin-top:-200px;transition:opacity .3s linear;text-decoration:none}
+.cg-card{position:relative;width:100%;height:100%;border-radius:14px;overflow:hidden;box-shadow:0 25px 60px -12px rgba(20,10,45,.55);border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);backdrop-filter:blur(12px);transition:transform .35s var(--ease),box-shadow .35s}
+.cg-item:hover .cg-card{transform:scale(1.05);box-shadow:0 0 60px -15px rgba(212,163,115,.7)}
+.cg-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cg-caption{position:absolute;bottom:0;left:0;width:100%;padding:16px;background:linear-gradient(to top,rgba(0,0,0,.85),transparent);color:#fff}
+.cg-caption h2{font-size:1.15rem;font-weight:700;line-height:1.2}
+.cg-caption em{font-size:.82rem;font-style:italic;opacity:.8}
+.cg-cta{display:inline-block;margin-top:8px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-200)}
+@media(max-width:640px){.circular-gallery{height:480px}.cg-item{width:230px;height:320px;margin-left:-115px;margin-top:-160px}.hero-gallery{min-height:118svh}}
+/* Themed destination cards */
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.dest-card{--theme-color:150 50% 25%;width:100%;height:100%}
+.dest-card a{position:relative;display:block;width:100%;height:420px;border-radius:18px;overflow:hidden;box-shadow:0 0 40px -15px hsl(var(--theme-color)/.5);transition:transform .5s var(--ease),box-shadow .5s}
+.dest-card a:hover{transform:scale(1.03);box-shadow:0 0 60px -15px hsl(var(--theme-color)/.6)}
+.dest-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s ease-in-out}
+.dest-card a:hover .dest-bg{transform:scale(1.1)}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top,hsl(var(--theme-color)/.9),hsl(var(--theme-color)/.6) 30%,transparent 60%)}
+.dest-content{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;color:#fff}
+.dest-content h3{font-size:1.8rem;font-weight:700;letter-spacing:-.01em}
+.dest-content h3 span{font-size:1.4rem;margin-left:6px}
+.dest-stats{font-size:.84rem;color:rgba(255,255,255,.8);margin-top:4px;font-weight:500}
+.dest-explore{margin-top:18px;display:flex;align-items:center;justify-content:space-between;background:hsl(var(--theme-color)/.2);backdrop-filter:blur(12px);border:1px solid hsl(var(--theme-color)/.3);border-radius:10px;padding:12px 16px;transition:background .3s,border .3s}
+.dest-card a:hover .dest-explore{background:hsl(var(--theme-color)/.4);border-color:hsl(var(--theme-color)/.5)}
+.dest-explore span{font-size:.8rem;font-weight:600;letter-spacing:.06em}
+.dest-explore i{font-style:normal;transition:transform .3s}
+.dest-card a:hover .dest-explore i{transform:translateX(4px)}
+@media(max-width:900px){.dest-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.dest-grid{grid-template-columns:1fr}.dest-card a{height:360px}}
 

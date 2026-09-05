@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin - Bookings | Jeewan Yatra Hotels</title>
+<meta name="description" content="Admin panel - bookings for Jeewan Yatra Hotels">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+.admin-wrap{max-width:1100px;margin:40px auto;padding:0 20px}
+.admin-table-wrap{overflow:auto;border-radius:16px;border:1px solid var(--glass-border);background:#fff;box-shadow:var(--shadow-card)}
+.admin-table{width:100%;border-collapse:collapse;min-width:900px}
+.admin-table th{background:var(--lav-700);color:#fff;padding:12px 14px;text-align:left;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+.admin-table td{padding:12px 14px;border-bottom:1px solid var(--lav-100);font-size:.84rem;color:var(--ink-soft)}
+.admin-table tr:hover{background:rgba(107,70,193,.04)}
+.badge{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600}
+.badge-season{background:rgba(212,163,115,.2);color:var(--gold-700);border:1px solid rgba(212,163,115,.3)}
+.badge-off{background:rgba(107,70,193,.08);color:var(--lav-700);border:1px solid rgba(107,70,193,.12)}
+</style>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+<div class="header-inner">
+<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="Jeewan Yatra Hotels"></a>
+<nav class="main-nav" id="mainNav"><ul><li><a href="hotels.html">Our Hotels</a></li><li><a href="offers.html">Offers</a></li><li><a href="booking.html" class="active">Bookings</a></li><li><a href="admin.html">Admin</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+<a class="btn btn-gold btn-sm book-header-btn" href="booking.html">Book Now</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</div>
+</header>
+
+<section class="page-hero" style="min-height:36svh">
+<img src="https://assets.simplotel.com/simplotel/image/upload/q_80,w_1600,f_auto,c_limit/leisure-hotels/WhatsApp_Image_2018-06-07_at_18.05.30_(15)" alt="">
+<div class="container">
+<p class="breadcrumb"><a href="index.html">Home</a> · Admin</p>
+<h1>Admin — <em>Bookings</em></h1>
+<p class="lead">All queries from booking.html land here (local demo) and are emailed to bookings@jeewayatrahotels.com via FormSubmit. For production, connect Turso/Cloudflare Worker.</p>
+</div>
+</section>
+
+<section class="section">
+<div class="admin-wrap">
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px">
+<button class="btn btn-outline btn-sm" onclick="exportCSV()">Export CSV</button>
+<button class="btn btn-outline btn-sm" onclick="clearAll()">Clear All (Demo)</button>
+<span id="count" class="form-note" style="margin-left:auto"></span>
+</div>
+<div class="admin-table-wrap">
+<table class="admin-table" id="adminTable">
+<thead>
+<tr><th>ID</th><th>Date</th><th>Property • Room</th><th>Meal</th><th>Season</th><th>Check-in → Out (Nights)</th><th>Guests</th><th>Total</th><th>Guest</th></tr>
+</thead>
+<tbody id="tbody">
+<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking.html">booking.html</a></td></tr>
+</tbody>
+</table>
+</div>
+<p class="form-note" style="margin-top:14px">This demo stores bookings in your browser's localStorage (<code>jy_bookings</code>). For real admin, plug Turso DB or Google Sheet: every form POST also hits <code>https://formsubmit.co/ajax/bookings@jeewayatrahotels.com</code> and sends a table email. Add a Cloudflare Pages Function at <code>/api/book</code> to insert into Turso and email.</p>
+<div class="info-tile" style="margin-top:18px">
+<div class="ico">⚙️</div>
+<div><h3>Want real DB?</h3><p>Free: Cloudflare Pages + Turso (SQLite). Create <code>bookings</code> table in Turso, add Pages Function <code>functions/api/book.js</code> that inserts and emails via MailChannels. We can wire it now if you share Turso URL.</p></div>
+</div>
+</div>
+</section>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand">
+<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="Jeewan Yatra Hotels"></a>
+<p style="margin-top:18px;font-size:.88rem;color:rgba(233,226,247,.75);max-width:300px">Admin demo — bookings live in this browser.</p>
+</div>
+<div>
+<h4>Explore</h4>
+<ul>
+<li><a href="hotels.html">Our Hotels</a></li>
+<li><a href="booking.html">Book Now</a></li>
+<li><a href="admin.html">Admin</a></li>
+</ul>
+</div>
+<div class="footer-news">
+<h4>Test</h4>
+<p><a href="booking.html?property=jim-corbett%2Fhill-turn-corbett-resort%2F&room=deluxe-room" class="btn btn-gold btn-sm">Test Booking</a></p>
+</div>
+</div>
+<div class="footer-bottom"><div class="container">
+<span>© <span id="year">2026</span> Jeewan Yatra Hotels. All rights reserved.</span>
+</div></div>
+</footer>
+
+<script>
+function loadBookings(){
+  const data = JSON.parse(localStorage.getItem("jy_bookings")||"[]");
+  const tbody = document.getElementById("tbody");
+  const count = document.getElementById("count");
+  count.textContent = data.length + " booking" + (data.length!==1?"s":"");
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking.html">booking.html</a></td></tr>';
+    return;
+  }
+  tbody.innerHTML = "";
+  data.forEach(b=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td><strong>${b.id}</strong><br><small>${new Date(b.date).toLocaleString()}</small></td>
+<td>${b.checkin} → ${b.checkout} (${b.nights}n)</td>
+<td><strong>${b.propertyName}</strong><br><small>${b.roomName}</small></td>
+<td>${b.mealPlan}</td>
+<td><span class="badge ${b.season==="season"?"badge-season":"badge-off"}">${b.season}</span><br><small>${b.seasonLabel}</small></td>
+<td>${b.checkin} → ${b.checkout} (${b.nights})</td>
+<td>${b.rooms}r • ${b.adults}A • ${b.children}C<br><small>Extra A 35% • C 25%</small></td>
+<td><strong>₹${Number(b.totalPrice).toLocaleString("en-IN")}</strong><br><small>Base ₹${Number(b.basePrice).toLocaleString("en-IN")}/night</small></td>
+<td>${b.guestName}<br><small>${b.guestPhone}<br>${b.guestEmail}</small></td>`;
+    tbody.appendChild(tr);
+  });
+}
+function exportCSV(){
+  const data = JSON.parse(localStorage.getItem("jy_bookings")||"[]");
+  if (!data.length) return alert("No bookings");
+  const headers = Object.keys(data[0]).join(",");
+  const rows = data.map(r=> Object.values(r).map(v=> `"${String(v).replace(/"/g,'""')}"`).join(","));
+  const csv = [headers, ...rows].join("\n");
+  const blob = new Blob([csv], {type:"text/csv"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a"); a.href=url; a.download="jeewan-yatra-bookings.csv"; a.click();
+}
+function clearAll(){
+  if (confirm("Clear all demo bookings?")) { localStorage.removeItem("jy_bookings"); loadBookings(); }
+}
+document.addEventListener("DOMContentLoaded", loadBookings);
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
