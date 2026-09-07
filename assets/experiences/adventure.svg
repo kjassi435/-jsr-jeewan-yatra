@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1F3A52"/><stop offset="1" stop-color="#F26B4A"/></linearGradient>
+<radialGradient id="g2" cx="0.7" cy="0.3" r="0.6"><stop offset="0" stop-color="#FDF6F2" stop-opacity="0.6"/><stop offset="1" stop-color="#1F3A52" stop-opacity="0"/></radialGradient>
+<filter id="b"><feGaussianBlur stdDeviation="40"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#g)"/>
+<rect width="1600" height="900" fill="url(#g2)"/>
+<circle cx="1360.0" cy="162.0" r="60" fill="#FDF6F2" opacity="0.8"/>
+<circle cx="1360.0" cy="162.0" r="90" fill="#FDF6F2" opacity="0.3" filter="url(#b)"/>
+<path d="M0 585.0 L240.0 450.0 L480.0 558.0 L800.0 405.0 L1040.0 522.0 L1280.0 450.0 L1600 558.0 L1600 900 L0 900 Z" fill="#1F3A52" opacity="0.55"/>
+<path d="M0 702.0 L320.0 612.0 L640.0 702.0 L960.0 630.0 L1280.0 720.0 L1600 648.0 L1600 900 L0 900 Z" fill="#1F3A52" opacity="0.75"/>
+<text x="800.0" y="360.0" text-anchor="middle" font-family="Georgia,serif" font-size="220" fill="#FDF6F2" opacity="0.15">🥾</text>
+<text x="800.0" y="774.0" text-anchor="middle" font-family="Montserrat,Helvetica,sans-serif" font-size="68" font-weight="700" fill="#FDF6F2" letter-spacing="6">Adventure</text>
+<text x="800.0" y="828.0" text-anchor="middle" font-family="Montserrat,Helvetica,sans-serif" font-size="22" font-weight="500" fill="#FDF6F2" letter-spacing="14" opacity="0.85">JEEWAN YATRA HOTELS</text>
+</svg>
