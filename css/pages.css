@@ -99,7 +99,7 @@
 
 /* Premium property: price table, meta, gallery slider */
 .prop-meta-bar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0;padding:14px 18px;border-radius:var(--radius-lg);background:var(--glass-deep);border:1px solid var(--glass-border);font-size:.84rem;color:var(--ink-soft)}
-.prop-meta-bar span{padding:6px 12px;border-radius:var(--radius-pill);background:rgba(107,70,193,.08);border:1px solid rgba(107,70,193,.12)}
+.prop-meta-bar span{padding:6px 12px;border-radius:var(--radius-pill);background:rgba(242,107,74,.08);border:1px solid rgba(242,107,74,.12)}
 .prop-meta-bar a{color:var(--lav-700);font-weight:600}
 .rating-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 0}
 .rating-badge{background:var(--grad-gold);color:#fff;padding:8px 14px;border-radius:var(--radius-pill);font-weight:700;font-size:.86rem;box-shadow:var(--shadow-gold)}
@@ -111,7 +111,7 @@
 .price-table th{background:var(--lav-700);color:#fff;font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:.78rem}
 .price-table th.season-head{background:var(--gold-600)}
 .price-table td{color:var(--ink-soft);font-weight:500}
-.price-table td.room-name{font-weight:700;color:var(--ink);background:rgba(107,70,193,.04);position:sticky;left:0}
+.price-table td.room-name{font-weight:700;color:var(--ink);background:rgba(242,107,74,.04);position:sticky;left:0}
 .price-table tbody tr:hover{background:rgba(212,163,115,.06)}
 .gallery-slider{border-radius:var(--radius-lg);overflow:hidden;background:var(--glass-deep);border:1px solid var(--glass-border);box-shadow:var(--shadow-card)}
 .gallery-main{aspect-ratio:16/9;overflow:hidden;background:#000}
@@ -134,7 +134,7 @@
 .glass-form{display:grid;gap:16px}
 .glass-form label{font-size:.82rem;font-weight:600;color:var(--ink);letter-spacing:.02em}
 .glass-form input,.glass-form select,.glass-form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--lav-100);background:#fff;font-family:var(--font-sans);font-size:.9rem;color:var(--ink);transition:border .2s}
-.glass-form input:focus,.glass-form select:focus,.glass-form textarea:focus{outline:none;border-color:var(--lav-400);box-shadow:0 0 0 3px rgba(107,70,193,.12)}
+.glass-form input:focus,.glass-form select:focus,.glass-form textarea:focus{outline:none;border-color:var(--lav-400);box-shadow:0 0 0 3px rgba(242,107,74,.12)}
 .form-row{display:grid;gap:16px}
 .form-row.two{grid-template-columns:1fr 1fr}
 .price-card{background:var(--glass-deep);border:1px solid var(--glass-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);overflow:hidden;position:sticky;top:90px}
@@ -145,9 +145,9 @@
 .price-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--lav-100);font-size:.88rem;color:var(--ink-soft)}
 .price-row.total{font-weight:700;color:var(--ink);border-bottom:none;background:rgba(212,163,115,.08);margin:0 -18px;padding:14px 18px;border-radius:10px}
 .price-card-foot{padding:18px;border-top:1px solid var(--lav-100);background:rgba(255,255,255,.6)}
-.room-price-line{margin:10px 0 12px;padding:10px 14px;border-radius:10px;background:rgba(107,70,193,.06);border:1px solid rgba(107,70,193,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.room-price-line{margin:10px 0 12px;padding:10px 14px;border-radius:10px;background:rgba(242,107,74,.06);border:1px solid rgba(242,107,74,.12);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
 .room-price{font-weight:700;color:var(--lav-700);font-size:1rem}
-.badge-off{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(107,70,193,.08);color:var(--lav-700);border:1px solid rgba(107,70,193,.12)}
+.badge-off{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(242,107,74,.08);color:var(--lav-700);border:1px solid rgba(242,107,74,.12)}
 .badge-season{padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(212,163,115,.18);color:var(--gold-700);border:1px solid rgba(212,163,115,.3)}
 @media(max-width:900px){.booking-grid{grid-template-columns:1fr}.price-card{position:static}.form-row.two{grid-template-columns:1fr}}
 /* Circular 3D gallery hero */

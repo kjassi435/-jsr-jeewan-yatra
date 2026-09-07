@@ -20,7 +20,7 @@
 .exp-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   z-index:-2;transition:transform 1.1s var(--ease)}
 .exp-card::before{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(34,21,64,.05) 35%,rgba(34,21,64,.82))}
+  background:linear-gradient(180deg,rgba(57,15,16,.05) 35%,rgba(57,15,16,.82))}
 .exp-card:hover img{transform:scale(1.09)}
 .exp-body{padding:26px;color:#fff}
 .exp-body h3{font-family:var(--font-serif);font-size:1.7rem;font-weight:600;margin-bottom:8px}
@@ -35,8 +35,8 @@
   padding:clamp(36px,6vw,70px);color:#fff;isolation:isolate;
   background:var(--grad-lav);box-shadow:var(--shadow-soft)}
 .offer-banner::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.9;
-  background:radial-gradient(60% 120% at 85% 10%,rgba(212,163,115,.5),transparent 60%),
-             radial-gradient(50% 100% at 10% 90%,rgba(150,113,222,.55),transparent 60%)}
+  background:radial-gradient(60% 120% at 85% 10%,rgba(245,169,104,.5),transparent 60%),
+             radial-gradient(50% 100% at 10% 90%,rgba(242,107,74,.45),transparent 60%)}
 .offer-banner::after{content:"✦";position:absolute;top:18px;right:30px;font-size:1.4rem;
   color:rgba(255,255,255,.35);animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -79,12 +79,12 @@
   background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat span{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
 
-/* Footer */
-.site-footer{position:relative;margin-top:96px;color:#e9e2f7;
-  background:linear-gradient(180deg,#31205a 0%,var(--lav-900) 70%)}
+/* Footer — Sunset Horizon espresso */
+.site-footer{position:relative;margin-top:96px;color:#FDF6F2;
+  background:linear-gradient(180deg,#8B3A1A 0%,var(--lav-900) 70%)}
 .site-footer::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
-  background:radial-gradient(50% 60% at 88% 8%,rgba(212,163,115,.22),transparent 60%),
-             radial-gradient(46% 52% at 6% 20%,rgba(150,113,222,.3),transparent 60%)}
+  background:radial-gradient(50% 60% at 88% 8%,rgba(245,169,104,.25),transparent 60%),
+             radial-gradient(46% 52% at 6% 20%,rgba(242,107,74,.3),transparent 60%)}
 .footer-inner{position:relative;width:min(1200px,92%);margin-inline:auto;
   padding:70px 0 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px}
 .footer-brand .brand-text{color:#fff}
@@ -92,14 +92,14 @@
 .site-footer h4{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--gold-300);margin-bottom:18px;font-weight:600}
 .site-footer ul li{margin-bottom:10px}
-.site-footer ul a{font-size:.88rem;color:rgba(233,226,247,.82);transition:color .3s,padding .3s}
+.site-footer ul a{font-size:.88rem;color:rgba(253,246,242,.85);transition:color .3s,padding .3s}
 .site-footer ul a:hover{color:var(--gold-200);padding-left:6px}
 .footer-contact li{display:flex;gap:12px;align-items:flex-start;font-size:.88rem;
-  color:rgba(233,226,247,.85);margin-bottom:10px}
-.footer-news p{font-size:.86rem;color:rgba(233,226,247,.75);margin-bottom:16px}
+  color:rgba(253,246,242,.88);margin-bottom:10px}
+.footer-news p{font-size:.86rem;color:rgba(253,246,242,.78);margin-bottom:16px}
 .news-form{display:flex;gap:8px}
 .footer-bottom{position:relative;border-top:1px solid rgba(255,255,255,.14);
-  padding:20px 0;font-size:.76rem;color:rgba(233,226,247,.6)}
+  padding:20px 0;font-size:.76rem;color:rgba(253,246,242,.65)}
 .footer-bottom .container{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .social-row{display:flex;gap:12px;margin-top:22px}
 .social-row a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;

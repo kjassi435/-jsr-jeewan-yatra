@@ -1,9 +1,9 @@
 /* ===== 2/5 COMPONENTS: header · hero (part 1) ===== */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);
   display:flex;align-items:center;transition:background .4s,box-shadow .4s,height .4s}
-.site-header.scrolled{height:68px;background:rgba(255,255,255,.74);
+.site-header.scrolled{height:68px;background:rgba(255,255,255,.78);
   backdrop-filter:blur(18px) saturate(160%);
-  box-shadow:0 10px 40px -18px rgba(39,24,72,.35);
+  box-shadow:0 10px 40px -18px rgba(57,15,16,.35);
   border-bottom:1px solid rgba(255,255,255,.5)}
 .header-inner{width:min(1320px,94%);margin-inline:auto;display:flex;align-items:center;gap:28px}
 .brand{display:flex;align-items:center;gap:12px}
@@ -84,11 +84,11 @@ body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-4
 .prop-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
 .prop-card:hover .prop-media img{transform:scale(1.08)}
 .prop-media::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 40%,rgba(34,21,64,.55))}
+  background:linear-gradient(180deg,transparent 40%,rgba(57,15,16,.55))}
 .prop-badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 14px;
   font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
   color:#fff;border-radius:var(--radius-pill);
-  background:rgba(34,21,64,.45);border:1px solid rgba(255,255,255,.35);
+  background:rgba(57,15,16,.45);border:1px solid rgba(255,255,255,.35);
   backdrop-filter:blur(8px)}
 .prop-body{position:relative;padding:22px 24px 24px;display:flex;
   flex-direction:column;gap:8px}
