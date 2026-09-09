@@ -1,8 +1,9 @@
 /* Circular 3D Hotel Gallery — Bakes n Sale PRD port (vanilla)
-   12 hotels on a 3D ring. Auto-rotate 0.14deg/frame, hover/drag pause,
-   drag momentum (0.96 friction), click suppressed if dragged >8px,
-   hover brightness + View badge, keyboard nav, reduced-motion,
-   lazy off-screen cards, hero_card_click analytics. */
+   12 hotels on a 3D ring. Smooth left-to-right auto-rotate, pauses on
+   hover/touch-hold, drag/swipe with momentum (0.96 friction), click
+   suppressed if dragged >8px so taps open the hotel page, keyboard nav,
+   reduced-motion, lazy off-screen cards, hero_card_click analytics.
+   NOTE: page scroll never drives rotation. */
 (function () {
   const DATA = [
     { name: "Hill Turn Corbett Resort", city: "Ramnagar, Jim Corbett", href: "jim-corbett/hill-turn-corbett-resort/index.html", img: "assets/hotels/jim-corbett_hill-turn-corbett-resort-1.jpg" },
@@ -34,22 +35,21 @@
     const mount = document.getElementById("circularGallery");
     if (!mount) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const AUTO = reduced ? 0 : 0.14;
+    const AUTO = reduced ? 0 : 0.14; // smooth left-to-right drift
     let d = dims();
     let rotation = 0;
     let velocity = 0;
-    let isScrolling = false;
-    let scrollTimer = null;
-    let hovering = false;
-    let dragging = false;
-    let dragStartX = 0;
+    let hovering = false;   // cursor over gallery: freeze
+    let dragging = false;   // pointer/touch held: freeze + manual spin
+    let axisLocked = false; // horizontal swipe confirmed (vs vertical page scroll)
     let dragLastX = 0;
+    let dragLastY = 0;
     let dragDist = 0;
 
     mount.innerHTML = "";
     mount.setAttribute("tabindex", "0");
     mount.setAttribute("role", "region");
-    mount.setAttribute("aria-label", "Circular 3D Gallery of Jeewan Yatra Hotels. Use left and right arrows to rotate, Enter to open.");
+    mount.setAttribute("aria-label", "3D gallery of Jeewan Yatra Hotels. Use left and right arrows to rotate, Enter to open.");
     const ring = document.createElement("div");
     ring.className = "cg-ring";
     mount.appendChild(ring);
@@ -68,22 +68,24 @@
       // Lazy: eager for first 3, lazy rest (updated per-frame below)
       a.innerHTML =
         '<div class="cg-card">' +
-        '<img src="' + item.img + '" alt="' + item.name + '" ' + (i < 3 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"') + ">" +
+        '<img src="' + item.img + '" alt="' + item.name + ", " + item.city + '" ' + (i < 3 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"') + ">" +
         '<span class="cg-view">View Hotel</span>' +
         '<div class="cg-caption"><h2>' + item.name + "</h2><em>" + item.city + "</em></div>" +
         "</div>";
-      // Click suppressed if dragged >8px + analytics
+      // Click opens the hotel page unless the pointer just dragged (>8px)
       a.addEventListener("click", function (e) {
         if (dragDist > 8) { e.preventDefault(); return; }
         try {
           (window.dataLayer = window.dataLayer || []).push({ event: "hero_card_click", name: item.name, position: i });
         } catch (err) {}
       });
-      a.addEventListener("mouseenter", () => { hovering = true; });
-      a.addEventListener("mouseleave", () => { hovering = false; });
       ring.appendChild(a);
       return a;
     });
+
+    // Hover anywhere on the gallery freezes the ring
+    mount.addEventListener("mouseenter", () => { hovering = true; });
+    mount.addEventListener("mouseleave", () => { hovering = false; });
 
     function paint() {
       ring.style.transform = "rotateY(" + rotation + "deg)";
@@ -102,50 +104,43 @@
     }
 
     function tick() {
-      if (!reduced && !isScrolling && !dragging && !hovering) {
-        rotation += AUTO + velocity;
+      if (!reduced && !dragging && !hovering) {
+        rotation += AUTO + velocity; // smooth auto drift + swipe momentum
         velocity *= 0.96; // momentum decay
         if (Math.abs(velocity) < 0.001) velocity = 0;
-      } else if (!dragging) {
-        velocity *= 0.96;
       }
       paint();
       requestAnimationFrame(tick);
     }
 
-    function onScroll() {
-      isScrolling = true;
-      if (scrollTimer) clearTimeout(scrollTimer);
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      const p = h > 0 ? window.scrollY / h : 0;
-      rotation = p * 360;
-      paint();
-      scrollTimer = setTimeout(() => { isScrolling = false; }, 150);
-    }
-
-    // Pointer + touch drag with momentum
+    // Hold-and-swipe: horizontal drag spins fast, vertical lets the page scroll
     mount.addEventListener("pointerdown", (e) => {
-      dragging = true; hovering = true;
-      dragStartX = e.clientX; dragLastX = e.clientX; dragDist = 0; velocity = 0;
+      dragging = true; axisLocked = false;
+      dragLastX = e.clientX; dragLastY = e.clientY; dragDist = 0; velocity = 0;
       try { mount.setPointerCapture(e.pointerId); } catch (err) {}
     });
     mount.addEventListener("pointermove", (e) => {
       if (!dragging) return;
       const dx = e.clientX - dragLastX;
-      dragLastX = e.clientX;
+      const dy = e.clientY - dragLastY;
+      if (!axisLocked) {
+        if (Math.abs(dy) > Math.abs(dx) * 1.2) { dragging = false; return; } // vertical: page scrolls
+        axisLocked = true;
+      }
+      dragLastX = e.clientX; dragLastY = e.clientY;
       dragDist += Math.abs(dx);
-      rotation += dx * 0.25;
-      velocity = dx * 0.25;
+      rotation += dx * 0.35; // fast swipe response
+      velocity = dx * 0.35;
       paint();
     });
-    ["pointerup", "pointercancel", "pointerleave"].forEach((ev) =>
-      mount.addEventListener(ev, () => { dragging = false; hovering = false; })
+    ["pointerup", "pointercancel"].forEach((ev) =>
+      mount.addEventListener(ev, () => { dragging = false; })
     );
 
     // Keyboard: arrows rotate, Enter opens front card
     mount.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") { rotation += 30; paint(); e.preventDefault(); }
-      else if (e.key === "ArrowLeft") { rotation -= 30; paint(); e.preventDefault(); }
+      if (e.key === "ArrowRight") { rotation += 30; velocity = 0; paint(); e.preventDefault(); }
+      else if (e.key === "ArrowLeft") { rotation -= 30; velocity = 0; paint(); e.preventDefault(); }
       else if (e.key === "Enter") {
         const front = cards.reduce((best, el) => {
           const z = parseInt(el.style.zIndex || "0", 10);
@@ -155,7 +150,6 @@
       }
     });
 
-    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", () => {
       d = dims();
       cards.forEach((el, i) => {
