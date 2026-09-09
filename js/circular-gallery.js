@@ -5,18 +5,18 @@
    lazy off-screen cards, hero_card_click analytics. */
 (function () {
   const DATA = [
-    { name: "Hill Turn Corbett Resort", city: "Ramnagar, Jim Corbett", href: "jim-corbett/hill-turn-corbett-resort/index.html", img: "assets/hotels/jim-corbett_hill-turn-corbett-resort.svg" },
-    { name: "The Whispering Oaks", city: "Dhikuli, Jim Corbett", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/destinations/jim-corbett.svg" },
-    { name: "Corbett Leela Vilas", city: "Dhikuli, Jim Corbett", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/jim-corbett_corbett-leela-vilas.svg" },
-    { name: "Onyxx Nature Resort", city: "Choi, Jim Corbett", href: "jim-corbett/onyxx-nature-resort/index.html", img: "assets/hotels/jim-corbett_onyxx-nature-resort.svg" },
+    { name: "Hill Turn Corbett Resort", city: "Ramnagar, Jim Corbett", href: "jim-corbett/hill-turn-corbett-resort/index.html", img: "assets/hotels/jim-corbett_hill-turn-corbett-resort-1.jpg" },
+    { name: "The Whispering Oaks", city: "Dhikuli, Jim Corbett", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Corbett Leela Vilas", city: "Dhikuli, Jim Corbett", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/jim-corbett_corbett-leela-vilas-1.jpg" },
+    { name: "Onyxx Nature Resort", city: "Choi, Jim Corbett", href: "jim-corbett/onyxx-nature-resort/index.html", img: "assets/hotels/jim-corbett_onyxx-nature-resort-1.jpg" },
     { name: "Corbett Prakarm Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/corbett-prakarm-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
-    { name: "Maulik Mansion Resort", city: "Dhikuli, Jim Corbett", href: "jim-corbett/maulik-mansion-resort/index.html", img: "assets/hotels/jim-corbett_maulik-mansion-resort.svg" },
-    { name: "Maya The Forest Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/maya-the-forest-resort/index.html", img: "assets/hotels/jim-corbett_maya-the-forest-resort.svg" },
-    { name: "Hotel Cedar Wood", city: "Nainital", href: "nainital/hotel-cedar-wood/index.html", img: "assets/hotels/nainital_hotel-cedar-wood.svg" },
-    { name: "Olive Lake View", city: "Bhimtal", href: "bhimtal/olive-lake-view/index.html", img: "assets/hotels/jim-corbett_onyxx-nature-resort.svg" },
-    { name: "Wild Spring", city: "Mussoorie", href: "mussoorie/wild-spring/index.html", img: "assets/hotels/mussoorie_wild-spring.svg" },
-    { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/jim-corbett_maulik-mansion-resort.svg" },
-    { name: "Sundervan Vilas", city: "Ranthambore", href: "ranthambore/sundervan-vilas/index.html", img: "assets/destinations/jim-corbett.svg" }
+    { name: "Maulik Mansion Resort", city: "Dhikuli, Jim Corbett", href: "jim-corbett/maulik-mansion-resort/index.html", img: "assets/hotels/jim-corbett_maulik-mansion-resort-1.jpg" },
+    { name: "Maya The Forest Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/maya-the-forest-resort/index.html", img: "assets/hotels/jim-corbett_maya-the-forest-resort-1.webp" },
+    { name: "Hotel Cedar Wood", city: "Nainital", href: "nainital/hotel-cedar-wood/index.html", img: "assets/hotels/nainital_hotel-cedar-wood-hero.webp" },
+    { name: "Olive Lake View", city: "Bhimtal", href: "bhimtal/olive-lake-view/index.html", img: "assets/hotels/bhimtal_olive-lake-view-1.jpg" },
+    { name: "Wild Spring", city: "Mussoorie", href: "mussoorie/wild-spring/index.html", img: "assets/hotels/mussoorie_wild-spring-hero.jpg" },
+    { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
+    { name: "Sundervan Vilas", city: "Ranthambore", href: "ranthambore/sundervan-vilas/index.html", img: "assets/hotels/ranthambore_sundervan-vilas-1.webp" }
   ];
 
   // PRD responsive table: breakpoint -> {radius, card WxH}
