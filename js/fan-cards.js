@@ -91,21 +91,36 @@
       return d;
     });
 
+    // Fewer visible cards on small screens so they never crowd:
+    // phones show 3 (gentle arc), tablets 5, desktop 7.
+    function visibleCount() {
+      const w = window.innerWidth;
+      if (w < 640) return 3;
+      if (w < 1024) return 5;
+      return MAX_VISIBLE;
+    }
+
     function visibleMap(centerIdx) {
+      const vc = visibleCount();
+      const half = vc >> 1;
       const map = new Map();
-      for (let slot = 0; slot < MAX_VISIBLE; slot++) {
-        map.set(((centerIdx + slot - HALF) % total + total) % total, slot);
+      for (let slot = 0; slot < vc; slot++) {
+        map.set(((centerIdx + slot - half) % total + total) % total, slot);
       }
       return map;
     }
 
-    function slotConfig(slot) { return FAN_POSITIONS[slot]; }
+    // Map a local slot onto the 7-position fan arc (keeps the same look)
+    function slotConfig(slot) {
+      const vc = visibleCount();
+      return FAN_POSITIONS[slot + ((MAX_VISIBLE - vc) >> 1)];
+    }
 
     function paint(hoveredSlot) {
       const mult = getResponsiveMultiplier(window.innerWidth);
       const hM = getHeightMultiplier(window.innerWidth);
       const vis = visibleMap(center);
-      const centerSlot = MAX_VISIBLE >> 1;
+      const centerSlot = visibleCount() >> 1;
       els.forEach((el, i) => {
         const slot = vis.get(i);
         if (slot === undefined) {

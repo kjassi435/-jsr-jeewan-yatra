@@ -216,10 +216,10 @@
 .fan-dots{display:flex;align-items:center;gap:8px}
 .fan-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.15);transition:all .3s;padding:0}
 .fan-dot.active{background:rgba(0,0,0,.7);transform:scale(1.3)}
-@media(max-width:1024px){.fan-layout{height:500px}.fan-card{width:260px;height:340px;margin-left:-130px;margin-top:-170px}}
-@media(max-width:768px){.fan-layout{height:440px}.fan-card{width:220px;height:300px;margin-left:-110px;margin-top:-150px}}
-@media(max-width:640px){.fan-layout{height:400px}.fan-card{width:200px;height:270px;margin-left:-100px;margin-top:-135px}}
-@media(max-width:480px){.fan-layout{height:360px;overflow:hidden}.fan-card{width:170px;height:230px;margin-left:-85px;margin-top:-115px}.fan-body h3{font-size:1rem}}
+@media(max-width:1024px){.fan-layout{height:560px}.fan-card{width:260px;height:340px;margin-left:-130px;margin-top:-170px}}
+@media(max-width:768px){.fan-layout{height:540px}.fan-card{width:230px;height:310px;margin-left:-115px;margin-top:-155px}}
+@media(max-width:640px){.fan-layout{height:520px;overflow:hidden}.fan-card{width:200px;height:280px;margin-left:-100px;margin-top:-140px}.fan-nav{margin-top:24px}}
+@media(max-width:480px){.fan-layout{height:500px;overflow:hidden}.fan-card{width:180px;height:250px;margin-left:-90px;margin-top:-125px}.fan-body h3{font-size:1rem}.fan-nav{margin-top:28px}}
 @media(prefers-reduced-motion:reduce){.fan-card{transition:none}}
 /* Hotel cards (destination-style, with Explore + Book actions) */
 .hotel-card a.hotel-main{height:460px}
