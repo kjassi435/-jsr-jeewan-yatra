@@ -199,6 +199,28 @@
 .dest-card a:hover .dest-explore i{transform:translateX(4px)}
 @media(max-width:900px){.dest-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.dest-grid{grid-template-columns:1fr}.dest-card a{height:360px}}
+/* Fan hotel cards (SocialCards port) */
+.fan-layout{position:relative;display:flex;justify-content:center;align-items:center;width:100%;max-width:80rem;margin-inline:auto;height:560px;overflow:visible}
+.fan-card{position:absolute;left:50%;top:50%;width:300px;height:380px;margin-left:-150px;margin-top:-190px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 25px 60px -18px rgba(57,15,16,.35);border:1px solid var(--glass-border);transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .4s ease;will-change:transform}
+.fan-card:hover{box-shadow:0 0 60px -15px rgba(242,107,74,.55)}
+.fan-img{position:relative;width:100%;height:68%;overflow:hidden}
+.fan-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fan-badge{position:absolute;top:12px;left:12px;padding:6px 14px;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#fff;border-radius:999px;background:rgba(57,15,16,.45);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+.fan-body{padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.fan-city{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-600);font-weight:600}
+.fan-body h3{font-family:var(--font-serif);font-size:1.25rem;font-weight:600;line-height:1.15;color:var(--ink)}
+.fan-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:8px;position:relative;z-index:30}
+.fan-arrow{position:relative;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(0,0,0,.1);background:rgba(0,0,0,.05);backdrop-filter:blur(16px);color:rgba(0,0,0,.4);cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.1);transition:border-color .3s,color .3s}
+.fan-arrow:hover{border-color:rgba(0,0,0,.25);color:rgba(0,0,0,.7)}
+.fan-arrow svg{width:18px;height:18px}
+.fan-dots{display:flex;align-items:center;gap:8px}
+.fan-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,.15);transition:all .3s;padding:0}
+.fan-dot.active{background:rgba(0,0,0,.7);transform:scale(1.3)}
+@media(max-width:1024px){.fan-layout{height:500px}.fan-card{width:260px;height:340px;margin-left:-130px;margin-top:-170px}}
+@media(max-width:768px){.fan-layout{height:440px}.fan-card{width:220px;height:300px;margin-left:-110px;margin-top:-150px}}
+@media(max-width:640px){.fan-layout{height:400px}.fan-card{width:200px;height:270px;margin-left:-100px;margin-top:-135px}}
+@media(max-width:480px){.fan-layout{height:360px;overflow:hidden}.fan-card{width:170px;height:230px;margin-left:-85px;margin-top:-115px}.fan-body h3{font-size:1rem}}
+@media(prefers-reduced-motion:reduce){.fan-card{transition:none}}
 /* Hotel cards (destination-style, with Explore + Book actions) */
 .hotel-card a.hotel-main{height:460px}
 .hotel-actions{display:flex;gap:10px;margin-top:12px}
