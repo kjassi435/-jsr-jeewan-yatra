@@ -37,7 +37,8 @@
     const mount = document.getElementById("circularGallery");
     if (!mount) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const AUTO = reduced ? 0 : 0.14; // smooth left-to-right drift
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    const AUTO = reduced ? 0 : 0.22; // smooth left-to-right drift, clearly visible
     let d = dims();
     let rotation = 0;
     let velocity = 0;
@@ -85,9 +86,18 @@
       return a;
     });
 
-    // Hover anywhere on the gallery freezes the ring
-    mount.addEventListener("mouseenter", () => { hovering = true; });
-    mount.addEventListener("mouseleave", () => { hovering = false; });
+    // Hover anywhere on the gallery freezes the ring — but only on devices
+    // with a real hover capability. Touch taps emulate mouseenter without a
+    // matching mouseleave, which used to stick `hovering` true forever.
+    if (canHover) {
+      mount.addEventListener("mouseenter", () => { hovering = true; });
+      mount.addEventListener("mouseleave", () => { hovering = false; });
+    }
+    // Safety resets so pause flags can never get stuck
+    window.addEventListener("blur", () => { dragging = false; hovering = false; velocity = 0; });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { dragging = false; hovering = false; velocity = 0; }
+    });
 
     function paint() {
       ring.style.transform = "rotateY(" + rotation + "deg)";
@@ -105,13 +115,38 @@
       });
     }
 
+    let lastAdvancedAt = performance.now();
+    let watchdogWarned = false;
+    // Exposed for diagnostics: paste `window.__jyGallery()` in DevTools
+    // to see live rotation + which pause flag (if any) is holding the ring.
+    window.__jyGallery = function () {
+      return {
+        rotation: +rotation.toFixed(2),
+        reduced, canHover, dragging, hovering,
+        velocity: +velocity.toFixed(3),
+        shouldAdvance: !reduced && !dragging && !hovering
+      };
+    };
+
     function tick() {
-      if (!reduced && !dragging && !hovering) {
-        rotation += AUTO + velocity; // smooth auto drift + swipe momentum
-        velocity *= 0.96; // momentum decay
-        if (Math.abs(velocity) < 0.001) velocity = 0;
+      try {
+        if (!reduced && !dragging && !hovering) {
+          rotation += AUTO + velocity; // smooth auto drift + swipe momentum
+          velocity *= 0.96; // momentum decay
+          if (Math.abs(velocity) < 0.001) velocity = 0;
+          lastAdvancedAt = performance.now();
+          watchdogWarned = false;
+        } else if (performance.now() - lastAdvancedAt > 3000 && !watchdogWarned) {
+          // Watchdog: flags say "paused" for 3s+ — report the stuck flag.
+          watchdogWarned = true;
+          try {
+            console.warn("[gallery] ring paused 3s+ — state:", window.__jyGallery());
+          } catch (err) {}
+        }
+        paint();
+      } catch (err) {
+        try { console.error("[gallery] tick error:", err); } catch (e) {}
       }
-      paint();
       requestAnimationFrame(tick);
     }
 
@@ -121,6 +156,7 @@
     // listeners track the gesture without touching click targeting.
     mount.addEventListener("pointerdown", (e) => {
       if (e.pointerType === "mouse" && e.button !== 0) return;
+      hovering = false; // touch taps must never leave a hover-freeze behind
       dragging = true; axisLocked = false;
       dragLastX = e.clientX; dragLastY = e.clientY; dragDist = 0; velocity = 0;
     });
