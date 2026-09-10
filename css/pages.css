@@ -168,7 +168,7 @@
 .cg-caption em{font-size:.82rem;font-style:italic;opacity:.8}
 .cg-cta{display:inline-block;margin-top:8px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold-200)}
 @media(prefers-reduced-motion:reduce){.cg-card,.cg-item{transition:none}}
-@media(max-width:640px){.circular-gallery{height:480px}.cg-item{width:230px;height:320px;margin-left:-115px;margin-top:-160px}.hero-gallery{min-height:118svh}}
+@media(max-width:640px){.circular-gallery{height:440px;overflow:hidden}.cg-item{width:200px;height:250px;margin-left:-100px;margin-top:-125px}.hero-gallery{min-height:118svh}}
 /* Bubble background (Sunset Horizon gooey blobs) */
 .bubble-bg{position:absolute;inset:0;overflow:hidden;z-index:0;filter:url(#jy-goo)}
 .jy-bubble{position:absolute;border-radius:50%;opacity:.5;transform:translate(var(--px,0),var(--py,0));animation:jy-drift 14s ease-in-out infinite alternate}

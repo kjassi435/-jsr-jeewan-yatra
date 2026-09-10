@@ -20,15 +20,17 @@
     { name: "Sundervan Vilas", city: "Ranthambore", href: "ranthambore/sundervan-vilas/index.html", img: "assets/hotels/ranthambore_sundervan-vilas-1.webp" }
   ];
 
-  // PRD responsive table: breakpoint -> {radius, card WxH}
+  // Responsive table: radius sized so adjacent-card spacing
+  // (chord = 2R·sin(15°) for 12 items) always exceeds card width.
+  // breakpoint -> {radius, card WxH}
   function dims() {
     const w = window.innerWidth;
-    if (w < 480) return { radius: 320, cw: 220, ch: 270 };
-    if (w < 640) return { radius: 340, cw: 240, ch: 288 };
-    if (w < 768) return { radius: 420, cw: 260, ch: 324 };
-    if (w < 1024) return { radius: 520, cw: 280, ch: 342 };
-    if (w < 1440) return { radius: 600, cw: 300, ch: 388 };
-    return { radius: 680, cw: 320, ch: 402 };
+    if (w < 480) return { radius: 410, cw: 200, ch: 250 };
+    if (w < 640) return { radius: 450, cw: 220, ch: 272 };
+    if (w < 768) return { radius: 500, cw: 240, ch: 300 };
+    if (w < 1024) return { radius: 570, cw: 260, ch: 330 };
+    if (w < 1440) return { radius: 650, cw: 300, ch: 380 };
+    return { radius: 730, cw: 320, ch: 400 };
   }
 
   function init() {
@@ -113,13 +115,16 @@
       requestAnimationFrame(tick);
     }
 
-    // Hold-and-swipe: horizontal drag spins fast, vertical lets the page scroll
+    // Hold-and-swipe: horizontal drag spins fast, vertical lets the page scroll.
+    // NOTE: no setPointerCapture here — capturing retargets the follow-up
+    // click to the container and kills anchor navigation. Window-level
+    // listeners track the gesture without touching click targeting.
     mount.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
       dragging = true; axisLocked = false;
       dragLastX = e.clientX; dragLastY = e.clientY; dragDist = 0; velocity = 0;
-      try { mount.setPointerCapture(e.pointerId); } catch (err) {}
     });
-    mount.addEventListener("pointermove", (e) => {
+    window.addEventListener("pointermove", (e) => {
       if (!dragging) return;
       const dx = e.clientX - dragLastX;
       const dy = e.clientY - dragLastY;
@@ -132,10 +137,9 @@
       rotation += dx * 0.35; // fast swipe response
       velocity = dx * 0.35;
       paint();
-    });
-    ["pointerup", "pointercancel"].forEach((ev) =>
-      mount.addEventListener(ev, () => { dragging = false; })
-    );
+    }, { passive: true });
+    window.addEventListener("pointerup", () => { dragging = false; });
+    window.addEventListener("pointercancel", () => { dragging = false; });
 
     // Keyboard: arrows rotate, Enter opens front card
     mount.addEventListener("keydown", (e) => {
