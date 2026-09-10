@@ -110,8 +110,19 @@
       return map;
     }
 
-    // Map a local slot onto the 7-position fan arc (keeps the same look)
+    // Phones get their own wide-spread 3-card fan (positions already in
+    // final rem — no responsive shrinking, or the cards pile up again).
+    // Tablets/desktop map onto the 7-position arc (keeps the same look).
+    const MOBILE_FAN = [
+      { rot: -14, scale: 0.78, x: -9.5, y: 2.2, zIndex: 2 },
+      { rot: 0, scale: 1.0, x: 0, y: 0.0, zIndex: 10 },
+      { rot: 14, scale: 0.78, x: 9.5, y: 2.2, zIndex: 2 }
+    ];
+
+    function isPhone() { return window.innerWidth < 640; }
+
     function slotConfig(slot) {
+      if (isPhone()) return MOBILE_FAN[slot];
       const vc = visibleCount();
       return FAN_POSITIONS[slot + ((MAX_VISIBLE - vc) >> 1)];
     }
@@ -119,6 +130,7 @@
     function paint(hoveredSlot) {
       const mult = getResponsiveMultiplier(window.innerWidth);
       const hM = getHeightMultiplier(window.innerWidth);
+      const phone = isPhone();
       const vis = visibleMap(center);
       const centerSlot = visibleCount() >> 1;
       els.forEach((el, i) => {
@@ -130,15 +142,16 @@
           return;
         }
         const base = slotConfig(slot);
-        let tx = base.x * mult, ty = base.y * hM, rot = base.rot, sc = base.scale;
+        const m = phone ? 1 : mult; // phone table is pre-tuned, don't shrink it
+        let tx = base.x * m, ty = base.y * hM, rot = base.rot, sc = base.scale;
         if (hoveredSlot !== null && hoveredSlot !== undefined) {
           const distance = Math.abs(slot - hoveredSlot);
           if (slot === hoveredSlot) { ty -= 2.5 * hM; sc *= 1.08; }
           else {
             const normalized = centerSlot > 0 ? (slot - centerSlot) / centerSlot : 0;
             const push = 8 * (1 - Math.abs(normalized)) * (1 + 0.2 * Math.max(0, 3 - distance));
-            if (slot < hoveredSlot) { tx -= push * mult; rot -= 3 / (distance + 1); }
-            else { tx += push * mult; rot += 3 / (distance + 1); }
+            if (slot < hoveredSlot) { tx -= push * m; rot -= 3 / (distance + 1); }
+            else { tx += push * m; rot += 3 / (distance + 1); }
           }
         }
         el.style.opacity = "1";
@@ -166,7 +179,7 @@
     // Entry animation: staggered rise, one card at a time
     function enter() {
       hasEntered = true;
-      const mult = getResponsiveMultiplier(window.innerWidth);
+      const mult = window.innerWidth < 640 ? 1 : getResponsiveMultiplier(window.innerWidth);
       const hM = getHeightMultiplier(window.innerWidth);
       const vis = visibleMap(center);
       if (reduced) { paint(null); isAnimating = false; return; }
