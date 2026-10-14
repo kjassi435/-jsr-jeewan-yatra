@@ -7,7 +7,7 @@
     { name: "Manral Resort", city: "Ramnagar", href: "jim-corbett/manral-resort/index.html", img: "assets/hotels/jim-corbett_manral-resort-1.jpg" },
     { name: "Corbett Leela Vilas", city: "Dhikuli", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/jim-corbett_corbett-leela-vilas-1.jpg" },
     { name: "The Whispering Oaks", city: "Dhikuli", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
-    { name: "Prakaram Resort", city: "Sawaldey", href: "jim-corbett/prakaram-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
+    { name: "Prakaram Resort", city: "Sawaldey", href: "jim-corbett/prakaram-resort/index.html", img: "assets/hotels/jim-corbett_prakaram-resort.svg" },
     { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
     { name: "Sakshi Upvan Resort", city: "Rishikesh", href: "rishikesh/sakshi-upvan-resort/index.html", img: "assets/destinations/haridwar.svg" },
     { name: "Anantvan Resort", city: "Ranthambore", href: "ranthambore/anantvan-resort/index.html", img: "assets/hotels/ranthambore_anantvan-resort-1.jpg" },
