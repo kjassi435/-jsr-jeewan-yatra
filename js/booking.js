@@ -1,18 +1,49 @@
 // Booking logic - dynamic pricing, season detection, localStorage admin
 const PROPERTY_NAMES = {
-  "jim-corbett/hill-turn-corbett-resort/": "Hill Turn Corbett Resort, Ramnagar (Jim Corbett) - 4★",
-  "jim-corbett/whispering-oaks-corbett/": "The Whispering Oaks Corbett, Dhikuli - 3★",
-  "jim-corbett/corbett-leela-vilas/": "Corbett Leela Vilas Resort, Dhikuli - 3★",
-  "jim-corbett/onyxx-nature-resort/": "Onyxx Nature Resort, Choi - 4★",
-  "jim-corbett/corbett-prakarm-resort/": "Corbett Prakarm Resort, Sawaldey - 3★",
-  "jim-corbett/maulik-mansion-resort/": "Maulik Mansion Resort, Dhikuli - 4★",
-  "jim-corbett/maya-the-forest-resort/": "Maya The Forest Resort, Sawaldey - 3★",
-  "nainital/hotel-cedar-wood/": "Hotel Cedar Wood, Nainital - 3★",
-  "bhimtal/olive-lake-view/": "Olive Lake View, Bhimtal - 3★",
-  "mussoorie/wild-spring/": "Wild Spring, Mussoorie - 3★",
+  "jim-corbett/manral-resort/": "Manral Resort, Ramnagar (Jim Corbett) - 4★",
+  "jim-corbett/corbett-leela-vilas/": "Corbett Leela Vilas, Dhikuli (Jim Corbett) - 3★",
+  "jim-corbett/whispering-oaks-corbett/": "The Whispering Oaks, Dhikuli (Jim Corbett) - 3★",
+  "jim-corbett/prakaram-resort/": "Prakaram Resort, Sawaldey (Jim Corbett) - 3★",
   "haridwar/abhyudyam-ganga/": "The Abhyudyam Ganga, Haridwar - 3★",
-  "ranthambore/sundervan-vilas/": "Sundervan Vilas Ranthambore - 3★",
+  "rishikesh/sakshi-upvan-resort/": "Sakshi Upvan Resort, Rishikesh - Premium",
+  "ranthambore/anantvan-resort/": "Anantvan Resort, Ranthambore - 4★",
+  "ranthambore/aranya-vilas/": "Aranya Vilas, Ranthambore - 5★",
+  "amritsar/hotel-holiday-dreamz/": "Hotel Holiday Dreamz, Amritsar - 3★",
+  "mukteshwar/green-solitude/": "The Green Solitude, Mukteshwar - Premium",
 };
+
+// Room lists for properties without published tariffs (B2B / on-request rates)
+const ROOM_LISTS = {
+  "jim-corbett/manral-resort/": [
+    { name: "Premium Room", slug: "premium-room" },
+    { name: "Family Room", slug: "family-room" },
+    { name: "Cottage Room", slug: "cottage-room" },
+  ],
+  "rishikesh/sakshi-upvan-resort/": [
+    { name: "Premium Room (on request)", slug: "premium-room" },
+  ],
+  "ranthambore/anantvan-resort/": [
+    { name: "Superior King Room", slug: "superior-king-room" },
+    { name: "Superior Twin Room", slug: "superior-twin-room" },
+    { name: "Deluxe King Room", slug: "deluxe-king-room" },
+    { name: "Deluxe Room with Balcony", slug: "deluxe-room-balcony" },
+  ],
+  "ranthambore/aranya-vilas/": [
+    { name: "Luxury Stone Villa", slug: "luxury-stone-villa" },
+  ],
+  "amritsar/hotel-holiday-dreamz/": [
+    { name: "Super Deluxe Room", slug: "super-deluxe-room" },
+    { name: "Family Room Triple Sharing", slug: "family-room-triple" },
+  ],
+  "mukteshwar/green-solitude/": [
+    { name: "Deluxe Room", slug: "deluxe-room" },
+    { name: "Superior Room", slug: "superior-room" },
+    { name: "Family Room", slug: "family-room" },
+    { name: "Family Duplex", slug: "family-duplex" },
+    { name: "2-Bedroom Cottage", slug: "2bhk-cottage" },
+  ],
+};
+const FALLBACK_PLANS = ["CP", "MAP", "AP"];
 
 function qs(name) {
   const url = new URL(window.location.href);
@@ -30,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const rooms = document.getElementById("rooms");
   const form = document.getElementById("bookingForm");
 
-  // Populate properties
-  Object.keys(TARIFFS).forEach(path => {
+  // Populate properties (all portfolio properties; tariffs optional)
+  Object.keys(PROPERTY_NAMES).forEach(path => {
     const opt = document.createElement("option");
     opt.value = path;
     opt.textContent = PROPERTY_NAMES[path] || path;
@@ -41,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Prefill from query
   const qProp = qs("property");
   const qRoom = qs("room");
-  if (qProp && TARIFFS[qProp]) {
+  if (qProp && PROPERTY_NAMES[qProp]) {
     propSel.value = qProp;
   } else if (!propSel.value) {
     propSel.selectedIndex = 0;
@@ -50,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
   function populateRooms() {
     const path = propSel.value;
     const t = TARIFFS[path];
-    if (!t) return;
+    const rows = t ? t.rows : (ROOM_LISTS[path] || []);
     roomSel.innerHTML = "";
-    t.rows.forEach(r => {
+    rows.forEach(r => {
       const opt = document.createElement("option");
       opt.value = r.slug;
       opt.textContent = r.name;
@@ -68,16 +99,16 @@ document.addEventListener("DOMContentLoaded", function() {
   function populateMealPlans() {
     const path = propSel.value;
     const t = TARIFFS[path];
-    if (!t) return;
+    const headers = t ? t.headers : FALLBACK_PLANS;
     mealSel.innerHTML = "";
-    t.headers.forEach(h => {
+    headers.forEach(h => {
       const opt = document.createElement("option");
       opt.value = h;
       opt.textContent = h + (h==="EP"?" (Room Only)":h==="CP"?" (Breakfast)":h==="MAP"?" (Breakfast+Dinner)":" (All Meals)");
       mealSel.appendChild(opt);
     });
     // default to CP if available
-    if (t.headers.includes("CP")) mealSel.value = "CP";
+    if (headers.includes("CP")) mealSel.value = "CP";
     updatePrice();
   }
 
@@ -103,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     const price = getPrice(path, room, plan, date);
     const season = getSeason(path, date);
+    const hasTariff = !!TARIFFS[path];
     const nights = getNights();
     const roomCount = parseInt(rooms.value) || 1;
     const adultCount = parseInt(adults.value) || 2;
@@ -117,7 +149,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Update UI
     document.getElementById("summaryProperty").textContent = PROPERTY_NAMES[path] || path;
-    const roomName = t.rows.find(r=>r.slug===room)?.name || room;
+    const allRows = t ? t.rows : (ROOM_LISTS[path] || []);
+    const roomName = allRows.find(r=>r.slug===room)?.name || room;
     document.getElementById("summaryRoom").textContent = roomName + " • " + plan;
     document.getElementById("basePrice").textContent = price ? formatPrice(price) + " × " + nights + "n × " + roomCount + "r" : "—";
     document.getElementById("nightsCount").textContent = nights + " night" + (nights>1?"s":"");
@@ -125,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("childPrice").textContent = childCount ? formatPrice(childTotal) + " (" + childCount + " × 25%)" : "₹0";
     document.getElementById("adultPrice").textContent = extraAdults ? formatPrice(adultTotal) + " (" + extraAdults + " × 35%)" : "₹0";
     document.getElementById("totalPrice").textContent = price ? formatPrice(total) : "—";
-    document.getElementById("submitPrice").textContent = price ? formatPrice(total) : "Select Dates";
+    document.getElementById("submitPrice").textContent = price ? formatPrice(total) : (hasTariff ? "Select Dates" : "Send Booking Request");
     document.getElementById("planLabel").textContent = plan;
     const badge = document.getElementById("seasonBadge");
     if (badge) {
@@ -133,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
       badge.className = season === "season" ? "badge-season" : "badge-off";
     }
     document.getElementById("seasonLabel").textContent = season === "season" ? "Season" : "Off-Season";
-    document.getElementById("seasonDates").textContent = season === "season" ? t.seasonLabel : t.offLabel;
+    document.getElementById("seasonDates").textContent = t ? (season === "season" ? t.seasonLabel : t.offLabel) : "Best rate on request";
 
     // Store for submit
     form.dataset.basePrice = price || 0;
@@ -175,14 +208,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const path = propSel.value;
     const room = roomSel.value;
     const t = TARIFFS[path];
-    const roomName = t.rows.find(r=>r.slug===room)?.name || room;
+    const allRows = t ? t.rows : (ROOM_LISTS[path] || []);
+    const roomName = allRows.find(r=>r.slug===room)?.name || room;
     const plan = mealSel.value;
     const basePrice = parseInt(form.dataset.basePrice) || 0;
     const totalPrice = parseInt(form.dataset.totalPrice) || 0;
     const nights = parseInt(form.dataset.nights) || 1;
     const season = form.dataset.season || getCurrentSeason(path);
     const booking = {
-      id: "JY" + Date.now().toString().slice(-6),
+      id: "ANSP" + Date.now().toString().slice(-6),
       date: new Date().toISOString(),
       property: path,
       propertyName: PROPERTY_NAMES[path],
@@ -202,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
       basePrice: basePrice,
       totalPrice: totalPrice,
       season: season,
-      seasonLabel: season==="season"?t.seasonLabel:t.offLabel,
+      seasonLabel: t ? (season==="season"?t.seasonLabel:t.offLabel) : "Best rate on request",
       extraAdultRate: "35%",
       extraChildRate: "25%",
     };
@@ -214,9 +248,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Save to localStorage (admin panel)
-    const existing = JSON.parse(localStorage.getItem("jy_bookings") || "[]");
+    const existing = JSON.parse(localStorage.getItem("ansp_bookings") || "[]");
     existing.unshift(booking);
-    localStorage.setItem("jy_bookings", JSON.stringify(existing));
+    localStorage.setItem("ansp_bookings", JSON.stringify(existing));
 
     // Send via FormSubmit (free) - also mailto fallback
     // Use FormSubmit AJAX
@@ -245,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function() {
     formData.append("_template", "table");
 
     // Try FormSubmit
-    fetch("https://formsubmit.co/ajax/bookings@jeewayatrahotels.com", {
+    fetch("https://formsubmit.co/ajax/reservations@ansphotels.com", {
       method: "POST",
       body: formData
     }).then(r=>r.json()).then(data=>{

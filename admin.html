@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Admin - Bookings | Jeewan Yatra Hotels</title>
-<meta name="description" content="Admin panel - bookings for Jeewan Yatra Hotels">
+<title>Admin - Bookings | ANSP Hotels &amp; Hospitality</title>
+<meta name="description" content="Admin panel - bookings for ANSP Hotels &amp; Hospitality">
 <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
 <body>
 <header class="site-header" id="siteHeader">
 <div class="header-inner">
-<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="Jeewan Yatra Hotels"></a>
+<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="ANSP Hotels &amp; Hospitality"></a>
 <nav class="main-nav" id="mainNav"><ul><li><a href="hotels.html">Our Hotels</a></li><li><a href="offers.html">Offers</a></li><li><a href="booking.html" class="active">Bookings</a></li><li><a href="admin.html">Admin</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
 <a class="btn btn-gold btn-sm book-header-btn" href="booking.html">Book Now</a>
 <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -43,7 +43,7 @@
 <div class="container">
 <p class="breadcrumb"><a href="index.html">Home</a> · Admin</p>
 <h1>Admin — <em>Bookings</em></h1>
-<p class="lead">All queries from booking.html land here (local demo) and are emailed to bookings@jeewayatrahotels.com via FormSubmit. For production, connect Turso/Cloudflare Worker.</p>
+<p class="lead">All queries from booking.html land here (local demo) and are emailed to reservations@ansphotels.com via FormSubmit. For production, connect Turso/Cloudflare Worker.</p>
 </div>
 </section>
 
@@ -64,7 +64,7 @@
 </tbody>
 </table>
 </div>
-<p class="form-note" style="margin-top:14px">This demo stores bookings in your browser's localStorage (<code>jy_bookings</code>). For real admin, plug Turso DB or Google Sheet: every form POST also hits <code>https://formsubmit.co/ajax/bookings@jeewayatrahotels.com</code> and sends a table email. Add a Cloudflare Pages Function at <code>/api/book</code> to insert into Turso and email.</p>
+<p class="form-note" style="margin-top:14px">This demo stores bookings in your browser's localStorage (<code>ansp_bookings</code>). For real admin, plug Turso DB or Google Sheet: every form POST also hits <code>https://formsubmit.co/ajax/reservations@ansphotels.com</code> and sends a table email. Add a Cloudflare Pages Function at <code>/api/book</code> to insert into Turso and email.</p>
 <div class="info-tile" style="margin-top:18px">
 <div class="ico">⚙️</div>
 <div><h3>Want real DB?</h3><p>Free: Cloudflare Pages + Turso (SQLite). Create <code>bookings</code> table in Turso, add Pages Function <code>functions/api/book.js</code> that inserts and emails via MailChannels. We can wire it now if you share Turso URL.</p></div>
@@ -75,7 +75,7 @@
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand">
-<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="Jeewan Yatra Hotels"></a>
+<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.jpeg" alt="ANSP Hotels &amp; Hospitality"></a>
 <p style="margin-top:18px;font-size:.88rem;color:rgba(253,246,242,.75);max-width:300px">Admin demo — bookings live in this browser.</p>
 </div>
 <div>
@@ -92,13 +92,13 @@
 </div>
 </div>
 <div class="footer-bottom"><div class="container">
-<span>© <span id="year">2026</span> Jeewan Yatra Hotels. All rights reserved.</span>
+<span>© <span id="year">2026</span> ANSP Hotels &amp; Hospitality. All rights reserved.</span>
 </div></div>
 </footer>
 
 <script>
 function loadBookings(){
-  const data = JSON.parse(localStorage.getItem("jy_bookings")||"[]");
+  const data = JSON.parse(localStorage.getItem("ansp_bookings")||"[]");
   const tbody = document.getElementById("tbody");
   const count = document.getElementById("count");
   count.textContent = data.length + " booking" + (data.length!==1?"s":"");
@@ -122,17 +122,17 @@ function loadBookings(){
   });
 }
 function exportCSV(){
-  const data = JSON.parse(localStorage.getItem("jy_bookings")||"[]");
+  const data = JSON.parse(localStorage.getItem("ansp_bookings")||"[]");
   if (!data.length) return alert("No bookings");
   const headers = Object.keys(data[0]).join(",");
   const rows = data.map(r=> Object.values(r).map(v=> `"${String(v).replace(/"/g,'""')}"`).join(","));
   const csv = [headers, ...rows].join("\n");
   const blob = new Blob([csv], {type:"text/csv"});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a"); a.href=url; a.download="jeewan-yatra-bookings.csv"; a.click();
+  const a = document.createElement("a"); a.href=url; a.download="ansp-bookings.csv"; a.click();
 }
 function clearAll(){
-  if (confirm("Clear all demo bookings?")) { localStorage.removeItem("jy_bookings"); loadBookings(); }
+  if (confirm("Clear all demo bookings?")) { localStorage.removeItem("ansp_bookings"); loadBookings(); }
 }
 document.addEventListener("DOMContentLoaded", loadBookings);
 </script>

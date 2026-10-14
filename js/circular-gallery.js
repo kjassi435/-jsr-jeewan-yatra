@@ -1,23 +1,21 @@
 /* Circular 3D Hotel Gallery — Bakes n Sale PRD port (vanilla)
-   12 hotels on a 3D ring. Smooth left-to-right auto-rotate, pauses on
+   10 hotels on a 3D ring. Smooth left-to-right auto-rotate, pauses on
    hover/touch-hold, drag/swipe with momentum (0.96 friction), click
    suppressed if dragged >8px so taps open the hotel page, keyboard nav,
    reduced-motion, lazy off-screen cards, hero_card_click analytics.
    NOTE: page scroll never drives rotation. */
 (function () {
   const DATA = [
-    { name: "Hill Turn Corbett Resort", city: "Ramnagar, Jim Corbett", href: "jim-corbett/hill-turn-corbett-resort/index.html", img: "assets/hotels/jim-corbett_hill-turn-corbett-resort-1.jpg" },
-    { name: "The Whispering Oaks", city: "Dhikuli, Jim Corbett", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Manral Resort", city: "Ramnagar, Jim Corbett", href: "jim-corbett/manral-resort/index.html", img: "assets/hotels/jim-corbett_manral-resort-1.jpg" },
     { name: "Corbett Leela Vilas", city: "Dhikuli, Jim Corbett", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/jim-corbett_corbett-leela-vilas-1.jpg" },
-    { name: "Onyxx Nature Resort", city: "Choi, Jim Corbett", href: "jim-corbett/onyxx-nature-resort/index.html", img: "assets/hotels/jim-corbett_onyxx-nature-resort-1.jpg" },
-    { name: "Corbett Prakarm Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/corbett-prakarm-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
-    { name: "Maulik Mansion Resort", city: "Dhikuli, Jim Corbett", href: "jim-corbett/maulik-mansion-resort/index.html", img: "assets/hotels/jim-corbett_maulik-mansion-resort-1.jpg" },
-    { name: "Maya The Forest Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/maya-the-forest-resort/index.html", img: "assets/hotels/jim-corbett_maya-the-forest-resort-1.webp" },
-    { name: "Hotel Cedar Wood", city: "Nainital", href: "nainital/hotel-cedar-wood/index.html", img: "assets/hotels/nainital_hotel-cedar-wood-hero.webp" },
-    { name: "Olive Lake View", city: "Bhimtal", href: "bhimtal/olive-lake-view/index.html", img: "assets/hotels/bhimtal_olive-lake-view-1.jpg" },
-    { name: "Wild Spring", city: "Mussoorie", href: "mussoorie/wild-spring/index.html", img: "assets/hotels/mussoorie_wild-spring-hero.jpg" },
+    { name: "The Whispering Oaks", city: "Dhikuli, Jim Corbett", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Prakaram Resort", city: "Sawaldey, Jim Corbett", href: "jim-corbett/prakaram-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
     { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
-    { name: "Sundervan Vilas", city: "Ranthambore", href: "ranthambore/sundervan-vilas/index.html", img: "assets/hotels/ranthambore_sundervan-vilas-1.webp" }
+    { name: "Sakshi Upvan Resort", city: "Rishikesh", href: "rishikesh/sakshi-upvan-resort/index.html", img: "assets/destinations/haridwar.svg" },
+    { name: "Anantvan Resort", city: "Ranthambore", href: "ranthambore/anantvan-resort/index.html", img: "assets/hotels/ranthambore_anantvan-resort-1.jpg" },
+    { name: "Aranya Vilas", city: "Ranthambore", href: "ranthambore/aranya-vilas/index.html", img: "assets/hotels/ranthambore_aranya-vilas-1.jpg" },
+    { name: "Hotel Holiday Dreamz", city: "Amritsar", href: "amritsar/hotel-holiday-dreamz/index.html", img: "assets/hotels/amritsar_hotel-holiday-dreamz-3.jpg" },
+    { name: "The Green Solitude", city: "Mukteshwar", href: "mukteshwar/green-solitude/index.html", img: "assets/hotels/mukteshwar_green-solitude-1.jpg" }
   ];
 
   // Responsive table: radius sized so adjacent-card spacing
@@ -52,7 +50,7 @@
     mount.innerHTML = "";
     mount.setAttribute("tabindex", "0");
     mount.setAttribute("role", "region");
-    mount.setAttribute("aria-label", "3D gallery of Jeewan Yatra Hotels. Use left and right arrows to rotate, Enter to open.");
+    mount.setAttribute("aria-label", "3D gallery of ANSP Hotels &amp; Hospitality. Use left and right arrows to rotate, Enter to open.");
     const ring = document.createElement("div");
     ring.className = "cg-ring";
     mount.appendChild(ring);

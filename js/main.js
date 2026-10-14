@@ -1,5 +1,5 @@
 /* =====================================================
-   Jeewan Yatra Group of Hotels — interactions engine
+   ANSP Hotels &amp; Hospitality — interactions engine
    header · parallax · 3D tilt · tabs · reveal · counters
    ===================================================== */
 (function () {
@@ -147,8 +147,8 @@
     return '../'.repeat(n);
   }
   function buildMailto(form) {
-    var to = 'bookings@jeewayatrahotels.com';
-    var subject = form.dataset.subject || 'Website Enquiry — Jeewan Yatra Group of Hotels';
+    var to = 'reservations@ansphotels.com';
+    var subject = form.dataset.subject || 'Website Enquiry — ANSP Hotels &amp; Hospitality';
     var body = [];
     var fd = new FormData(form);
     fd.forEach(function(v, k) { if (v) body.push(k + ': ' + v); });

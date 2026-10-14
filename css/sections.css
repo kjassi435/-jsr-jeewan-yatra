@@ -88,7 +88,7 @@
 .footer-inner{position:relative;width:min(1200px,92%);margin-inline:auto;
   padding:70px 0 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px}
 .footer-brand .brand-text{color:#fff}
-.footer-brand .brand-logo{width:200px;height:53px;margin-bottom:6px;background:rgba(255,255,255,.04);padding:6px 10px;border-radius:10px}
+.footer-brand .brand-logo{height:53px;width:auto;max-width:200px;margin-bottom:6px;background:rgba(255,255,255,.04);padding:6px 10px;border-radius:10px}
 .site-footer h4{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--gold-300);margin-bottom:18px;font-weight:600}
 .site-footer ul li{margin-bottom:10px}

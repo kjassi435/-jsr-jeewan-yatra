@@ -1,21 +1,19 @@
 /* Fan hotel cards — vanilla port of SocialCards (Bakes n Sale).
-   12 hotels fanned in an arc, 7 visible, center focused. Arrows + dots
+   10 hotels fanned in an arc, 7 visible, center focused. Arrows + dots
    paginate, hover lifts a card and pushes neighbours, click opens the
    hotel page (native anchor — no drag handling to interfere). */
 (function () {
   const CARDS = [
-    { name: "Hill Turn Corbett Resort", city: "Ramnagar", href: "jim-corbett/hill-turn-corbett-resort/index.html", img: "assets/hotels/jim-corbett_hill-turn-corbett-resort-1.jpg" },
-    { name: "The Whispering Oaks", city: "Dhikuli", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Manral Resort", city: "Ramnagar", href: "jim-corbett/manral-resort/index.html", img: "assets/hotels/jim-corbett_manral-resort-1.jpg" },
     { name: "Corbett Leela Vilas", city: "Dhikuli", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/jim-corbett_corbett-leela-vilas-1.jpg" },
-    { name: "Onyxx Nature Resort", city: "Choi", href: "jim-corbett/onyxx-nature-resort/index.html", img: "assets/hotels/jim-corbett_onyxx-nature-resort-1.jpg" },
-    { name: "Corbett Prakarm Resort", city: "Sawaldey", href: "jim-corbett/corbett-prakarm-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
-    { name: "Maulik Mansion Resort", city: "Dhikuli", href: "jim-corbett/maulik-mansion-resort/index.html", img: "assets/hotels/jim-corbett_maulik-mansion-resort-1.jpg" },
-    { name: "Maya The Forest Resort", city: "Sawaldey", href: "jim-corbett/maya-the-forest-resort/index.html", img: "assets/hotels/jim-corbett_maya-the-forest-resort-1.webp" },
-    { name: "Hotel Cedar Wood", city: "Nainital", href: "nainital/hotel-cedar-wood/index.html", img: "assets/hotels/nainital_hotel-cedar-wood-hero.webp" },
-    { name: "Olive Lake View", city: "Bhimtal", href: "bhimtal/olive-lake-view/index.html", img: "assets/hotels/bhimtal_olive-lake-view-1.jpg" },
-    { name: "Wild Spring", city: "Mussoorie", href: "mussoorie/wild-spring/index.html", img: "assets/hotels/mussoorie_wild-spring-hero.jpg" },
+    { name: "The Whispering Oaks", city: "Dhikuli", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Prakaram Resort", city: "Sawaldey", href: "jim-corbett/prakaram-resort/index.html", img: "assets/hotels/jim-corbett_corbett-prakarm-resort.svg" },
     { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
-    { name: "Sundervan Vilas", city: "Ranthambore", href: "ranthambore/sundervan-vilas/index.html", img: "assets/hotels/ranthambore_sundervan-vilas-1.webp" }
+    { name: "Sakshi Upvan Resort", city: "Rishikesh", href: "rishikesh/sakshi-upvan-resort/index.html", img: "assets/destinations/haridwar.svg" },
+    { name: "Anantvan Resort", city: "Ranthambore", href: "ranthambore/anantvan-resort/index.html", img: "assets/hotels/ranthambore_anantvan-resort-1.jpg" },
+    { name: "Aranya Vilas", city: "Ranthambore", href: "ranthambore/aranya-vilas/index.html", img: "assets/hotels/ranthambore_aranya-vilas-1.jpg" },
+    { name: "Hotel Holiday Dreamz", city: "Amritsar", href: "amritsar/hotel-holiday-dreamz/index.html", img: "assets/hotels/amritsar_hotel-holiday-dreamz-3.jpg" },
+    { name: "The Green Solitude", city: "Mukteshwar", href: "mukteshwar/green-solitude/index.html", img: "assets/hotels/mukteshwar_green-solitude-1.jpg" }
   ];
 
   const MAX_VISIBLE = 7;

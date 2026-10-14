@@ -11,7 +11,7 @@
   font-family:var(--font-serif);font-size:1.25rem;font-weight:700;color:#fff;
   background:var(--grad-lav);box-shadow:var(--shadow-gold);
   border:1px solid rgba(255,255,255,.35)}
-.brand-logo{width:270px;height:70px;display:block;border-radius:8px;
+.brand-logo{height:70px;width:auto;max-width:270px;display:block;border-radius:8px;
   background:rgba(255,255,255,.04);padding:4px 10px}
 .brand-text{font-family:var(--font-serif);font-size:1.38rem;font-weight:700;color:#fff;line-height:1}
 .site-header.scrolled .brand-text{color:var(--ink)}

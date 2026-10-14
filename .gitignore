@@ -23,3 +23,8 @@ __pycache__/
 
 # Server
 python.exe
+
+# One-shot helpers / source drops (not part of the site)
+_rebrand.py
+ANSP Hotels & Hospitality.docx
+WhatsApp Image 2026-10-11 at 12.47.10 PM.jpeg
