@@ -142,9 +142,7 @@
 
   /* ---------- Form handling: mailto + redirect to thank-you ---------- */
   function prefixForThanks() {
-    var dirs = location.pathname.split('/').filter(Boolean);
-    var n = Math.max(0, dirs.length - 1);
-    return '../'.repeat(n);
+    return '/';
   }
   function buildMailto(form) {
     var to = 'reservations@ansphotels.com';
@@ -158,7 +156,7 @@
     f.addEventListener('submit', function(e) {
       e.preventDefault();
       window.location.href = buildMailto(f);
-      setTimeout(function() { location.href = prefixForThanks() + 'thank-you.html'; }, 800);
+      setTimeout(function() { location.href = prefixForThanks() + 'thank-you'; }, 800);
     });
   });
 })();

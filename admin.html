@@ -31,9 +31,9 @@
 <body>
 <header class="site-header" id="siteHeader">
 <div class="header-inner">
-<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="ANSP Hotels &amp; Hospitality"></a>
-<nav class="main-nav" id="mainNav"><ul><li><a href="hotels.html">Our Hotels</a></li><li><a href="offers.html">Offers</a></li><li><a href="booking.html" class="active">Bookings</a></li><li><a href="admin.html">Admin</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
-<a class="btn btn-gold btn-sm book-header-btn" href="booking.html">Book Now</a>
+<a class="brand" href="./"><img class="brand-logo" src="assets/logo.png" alt="ANSP Hotels &amp; Hospitality"></a>
+<nav class="main-nav" id="mainNav"><ul><li><a href="hotels">Our Hotels</a></li><li><a href="offers">Offers</a></li><li><a href="booking" class="active">Bookings</a></li><li><a href="admin">Admin</a></li><li><a href="contact">Contact</a></li></ul></nav>
+<a class="btn btn-gold btn-sm book-header-btn" href="booking">Book Now</a>
 <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div>
 </header>
@@ -41,9 +41,9 @@
 <section class="page-hero" style="min-height:36svh">
 <img src="assets/destinations/jim-corbett.svg" alt="">
 <div class="container">
-<p class="breadcrumb"><a href="index.html">Home</a> · Admin</p>
+<p class="breadcrumb"><a href="./">Home</a> · Admin</p>
 <h1>Admin — <em>Bookings</em></h1>
-<p class="lead">All queries from booking.html land here (local demo) and are emailed to reservations@ansphotels.com via FormSubmit. For production, connect Turso/Cloudflare Worker.</p>
+<p class="lead">All queries from booking land here (local demo) and are emailed to reservations@ansphotels.com via FormSubmit. For production, connect Turso/Cloudflare Worker.</p>
 </div>
 </section>
 
@@ -60,7 +60,7 @@
 <tr><th>ID</th><th>Date</th><th>Property • Room</th><th>Meal</th><th>Season</th><th>Check-in → Out (Nights)</th><th>Guests</th><th>Total</th><th>Guest</th></tr>
 </thead>
 <tbody id="tbody">
-<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking.html">booking.html</a></td></tr>
+<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking">booking</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -75,20 +75,20 @@
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand">
-<a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.png" alt="ANSP Hotels &amp; Hospitality"></a>
+<a class="brand" href="./"><img class="brand-logo" src="assets/logo.png" alt="ANSP Hotels &amp; Hospitality"></a>
 <p style="margin-top:18px;font-size:.88rem;color:rgba(253,246,242,.75);max-width:300px">Admin demo — bookings live in this browser.</p>
 </div>
 <div>
 <h4>Explore</h4>
 <ul>
-<li><a href="hotels.html">Our Hotels</a></li>
-<li><a href="booking.html">Book Now</a></li>
-<li><a href="admin.html">Admin</a></li>
+<li><a href="hotels">Our Hotels</a></li>
+<li><a href="booking">Book Now</a></li>
+<li><a href="admin">Admin</a></li>
 </ul>
 </div>
 <div class="footer-news">
 <h4>Test</h4>
-<p><a href="booking.html?property=jim-corbett%2Fhill-turn-corbett-resort%2F&room=deluxe-room" class="btn btn-gold btn-sm">Test Booking</a></p>
+<p><a href="booking?property=jim-corbett%2Fhill-turn-corbett-resort%2F&room=deluxe-room" class="btn btn-gold btn-sm">Test Booking</a></p>
 </div>
 </div>
 <div class="footer-bottom"><div class="container">
@@ -103,7 +103,7 @@ function loadBookings(){
   const count = document.getElementById("count");
   count.textContent = data.length + " booking" + (data.length!==1?"s":"");
   if (!data.length) {
-    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking.html">booking.html</a></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px">No bookings yet — do a test booking from <a href="booking">booking</a></td></tr>';
     return;
   }
   tbody.innerHTML = "";

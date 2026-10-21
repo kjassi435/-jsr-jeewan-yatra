@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function() {
       // Save booking id for thank you page
       sessionStorage.setItem("lastBooking", JSON.stringify(booking));
       // Redirect to thank-you with booking id
-      window.location.href = "thank-you.html?booking=" + booking.id;
+      window.location.href = "/thank-you?booking=" + booking.id;
     });
   });
 });

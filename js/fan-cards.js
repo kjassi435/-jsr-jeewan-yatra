@@ -4,15 +4,15 @@
    hotel page (native anchor — no drag handling to interfere). */
 (function () {
   const CARDS = [
-    { name: "Corbett Leela Vilas", city: "Dhikuli", href: "jim-corbett/corbett-leela-vilas/index.html", img: "assets/hotels/leela/leela-01.jpg" },
-    { name: "The Whispering Oaks", city: "Dhikuli", href: "jim-corbett/whispering-oaks-corbett/index.html", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
-    { name: "Prakaram Resort", city: "Sawaldey", href: "jim-corbett/prakaram-resort/index.html", img: "assets/hotels/prakaram/prakaram-01.jpg" },
-    { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/index.html", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
-    { name: "Sakshi Upvan Resort", city: "Rishikesh", href: "rishikesh/sakshi-upvan-resort/index.html", img: "assets/destinations/haridwar.svg" },
-    { name: "Anantvan Resort", city: "Ranthambore", href: "ranthambore/anantvan-resort/index.html", img: "assets/hotels/ranthambore_anantvan-resort-1.jpg" },
-    { name: "Aranya Vilas", city: "Ranthambore", href: "ranthambore/aranya-vilas/index.html", img: "assets/hotels/ranthambore_aranya-vilas-1.jpg" },
-    { name: "Hotel Holiday Dreamz", city: "Amritsar", href: "amritsar/hotel-holiday-dreamz/index.html", img: "assets/hotels/amritsar_hotel-holiday-dreamz-3.jpg" },
-    { name: "The Green Solitude", city: "Mukteshwar", href: "mukteshwar/green-solitude/index.html", img: "assets/hotels/mukteshwar_green-solitude-1.jpg" }
+    { name: "Corbett Leela Vilas", city: "Dhikuli", href: "jim-corbett/corbett-leela-vilas/", img: "assets/hotels/leela/leela-01.jpg" },
+    { name: "The Whispering Oaks", city: "Dhikuli", href: "jim-corbett/whispering-oaks-corbett/", img: "assets/hotels/jim-corbett_whispering-oaks-corbett-1.jpg" },
+    { name: "Prakaram Resort", city: "Sawaldey", href: "jim-corbett/prakaram-resort/", img: "assets/hotels/prakaram/prakaram-01.jpg" },
+    { name: "The Abhyudyam Ganga", city: "Haridwar", href: "haridwar/abhyudyam-ganga/", img: "assets/hotels/haridwar_abhyudyam-ganga-1.webp" },
+    { name: "Sakshi Upvan Resort", city: "Rishikesh", href: "rishikesh/sakshi-upvan-resort/", img: "assets/destinations/haridwar.svg" },
+    { name: "Anantvan Resort", city: "Ranthambore", href: "ranthambore/anantvan-resort/", img: "assets/hotels/ranthambore_anantvan-resort-1.jpg" },
+    { name: "Aranya Vilas", city: "Ranthambore", href: "ranthambore/aranya-vilas/", img: "assets/hotels/ranthambore_aranya-vilas-1.jpg" },
+    { name: "Hotel Holiday Dreamz", city: "Amritsar", href: "amritsar/hotel-holiday-dreamz/", img: "assets/hotels/amritsar_hotel-holiday-dreamz-3.jpg" },
+    { name: "The Green Solitude", city: "Mukteshwar", href: "mukteshwar/green-solitude/", img: "assets/hotels/mukteshwar_green-solitude-1.jpg" }
   ];
 
   const MAX_VISIBLE = 7;
