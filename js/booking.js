@@ -1,6 +1,5 @@
 // Booking logic - dynamic pricing, season detection, localStorage admin
 const PROPERTY_NAMES = {
-  "jim-corbett/manral-resort/": "Manral Resort, Ramnagar (Jim Corbett) - 4★",
   "jim-corbett/corbett-leela-vilas/": "Corbett Leela Vilas, Dhikuli (Jim Corbett) - 3★",
   "jim-corbett/whispering-oaks-corbett/": "The Whispering Oaks, Dhikuli (Jim Corbett) - 3★",
   "jim-corbett/prakaram-resort/": "Prakaram Resort, Sawaldey (Jim Corbett) - 3★",
@@ -14,11 +13,6 @@ const PROPERTY_NAMES = {
 
 // Room lists for properties without published tariffs (B2B / on-request rates)
 const ROOM_LISTS = {
-  "jim-corbett/manral-resort/": [
-    { name: "Premium Room", slug: "premium-room" },
-    { name: "Family Room", slug: "family-room" },
-    { name: "Cottage Room", slug: "cottage-room" },
-  ],
   "rishikesh/sakshi-upvan-resort/": [
     { name: "Premium Room (on request)", slug: "premium-room" },
   ],

@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
       el.setAttribute("title", (getCurrentSeason(prop)==="season"?"Season":"Off-season") + " • " + TARIFFS[prop][getCurrentSeason(prop)==="season"?"seasonLabel":"offLabel"]);
     } else {
       el.textContent = "Best rate on request";
-      el.setAttribute("title", "Call +91 98377 60459 for the best rate");
+      el.setAttribute("title", "Call +91 86799 76939 for the best rate");
     }
   });
   // Update any element with data-current-season
